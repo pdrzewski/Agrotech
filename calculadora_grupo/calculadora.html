@@ -67,25 +67,20 @@
         var sacaPerdaQuant = saca * 0.2
         var perdaFinanceira = sacaPerdaQuant * preçoVenda
 
+        if(quant<0||preçoVenda<0){
+            alert('parâmetros negativos, tente com positivos')
+        }else{
+           
+
         if ((temp > 30 || temp < 20) && (umidade > 13 || umidade < 7)) {
 
         div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! ALERTA DE TEMPERATURA E UMIDADE!</h3> 
-        <h3>Você perderá ${perda.toFixed(2)} Kg da sua safra, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}! <br>
-        <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder 20% de seu lucro!<h3>`
+        <h3>Você perderá aproximadamente ${perda.toFixed(2)}Kg da sua safra, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}! <br>
+        <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 20% de seu lucro!<h3>`
 
-        } else if (temp > 30 && umidade > 13) {
+        }  
 
-        div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! ALERTA DE TEMPERATURA E UMIDADE!</h3> 
-        Você perderá ${perda.toFixed(2)} Kg da sua safra, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}! <br>
-        <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder 20% de seu lucro!<h3>`
-
-        } else if (temp < 20 && umidade < 7) {
-
-        div_resultado.innerHTML = `<h3 style="color: rgb(255, 153, 0);">Sua safra não está com os parametros ideais!</h3> 
-        <h3>Você ainda pode perder ${perda.toFixed(2)} Kg de sua produção (20% da safra), o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}! <br>
-        Use o projeto do grupo Agrotech e tenha um melhor aproveitamento e mais lucro!`
-
-        } else if (temp >= 20 && temp <= 30 && (umidade > 13 || umidade < 7)) {
+         else if (temp >= 20 && temp <= 30 && (umidade > 13 || umidade < 7)) {
 
         div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! PROBLEMA DE UMIDADE!</h3> 
         <h3>Você perderá aproximadamente ${perda.toFixed(2)}Kg da sua safra por conta da umidade desrregulada, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}!
@@ -107,7 +102,8 @@
             <br>
             <h3><i><b>Com a AgroTech, a seguraçanca da sua soja deixa de ser uma sorte e se torna uma certeza.</b></i></h3>`
         }
-
+         
+        }
     }
 
 </script>
