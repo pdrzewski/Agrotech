@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+    <style>
+        div {
+            text-align: center;
+        }
+        header, footer {
+            background-color: #176c91;
+            justify-content: center;
+            text-align: center;
+            height: 8vh;
+            display: flex;
+
+           
+        }
+    </style>
+</head>
+<body style="background-color: #457e96;">
+    <header>
+        <h1>Calculadora Financeira - AgroTech</h1>
+    </header>
+ 
+    <footer>
+        <h4>calcule o quanto você pode economizar com o nosso projeto.</h4>
+    </footer>
+   
+    <div id="div_tudo">
+    <br>
+    <br>
+    <label for="ipt_desperdicio"><b>Digite quantos quilos de soja foram desperdiçados:</b></label>
+    <br>
+    <input type="text" id="ipt_desperdicio" placeholder="(em quilos)">
+    <br>
+    <br>
+    <label for="ipt_sacas"><b>Digite o preço da soja por saca (de 60kg):</b></label>
+    <br>
+    <input type="text" id="ipt_sacas">
+    <br>
+    <br>
+    <button onclick="calculo()">Lucro</button>
+    <div id="div_dinheiro"></div>
+    </div>
+   
+
+</body>
+<script>
+    function calculo(){
+        var desperdicio = Number(ipt_desperdicio.value)
+        var sacas = (Number(ipt_sacas.value) / 60)
+        var valorTotal = (desperdicio * 0.2) * sacas
+     
+        div_dinheiro.innerHTML = `Você terá um lucro maior em ${valorTotal} reais`
+    }
+</script>
+</html>

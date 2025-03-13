@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Perda de Dinheiro com Desperdício de Soja</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        label,
+        p {
+            margin-top: 10px;
+        }
+
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #176c91;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #176c91;
+        }
+
+        #resultado {
+            margin-top: 15px;
+            font-weight: bold;
+            
+        }
+        #resultado2 {
+            margin-top: 15px;
+            font-weight: bold;
+          
+        }
+    </style>
+</head>
+
+<body>
+    
+
+    <form id="formSimulador">
+        <img src="" alt="">
+        <label for="ipt_soja">Quantidade de Soja Produzida (em kg):</label>
+        <input type="number" id="ipt_soja">
+
+        <label for="ipt_kgsoja">Preço por kg da Soja (em R$):</label>
+        <input type="number" id="ipt_kgsoja">
+
+        <button type="button" onclick="calcularPerda()">Simular Perda</button><br>
+        <div id="resultado"></div>
+        <div id="resultado2"></div>
+    </form>
+
+
+    <script>
+        function calcularPerda() {
+
+            var quantidadedeSoja = Number(ipt_soja.value);
+            var precoKgSoja = Number(ipt_kgsoja.value);
+            var valorTotal = quantidadedeSoja * precoKgSoja;
+            var perda = valorTotal * 0.20
+                if (perda < 50) {
+                    resultado2.innerHTML = "<p>Isso é um desperdício pequeno, mas ainda assim é importante prestar atenção.</p>";
+                } else if (perda >= 50 && perda <= 200) {
+                    resultado2.innerHTML = "<p>Esse desperdício pode afetar seu orçamento, vale a pena rever os processos.</p>";
+                } else {
+                    resultado2.innerHTML = "<p>Esse desperdício é alto! Você está perdendo uma grande quantia de dinheiro.</p>";
+                }
+                
+                resultado.innerHTML = `<p>A perda de dinheiro devido ao desperdício de soja é: R$ ${perda}.</p>`
+        }
+    </script>
+</body>
+
+</html>

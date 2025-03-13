@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora financeira - Rafael Parisi</title>
+    <style>
+        .centrado {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: rgb(3, 3, 83);">
+    <h3 class="centrado" style="color:aliceblue"> Bem-vindo ao calculador de desperdícios da AgroTech</h3>
+    <div id="div_cor" style="background-color: rgb(14, 14, 113);">
+        <br>
+        <br>
+        <label for="ipt_empresa" style="color:aliceblue">Insira o nome da empresa</label><br>
+        <input type="text" id="ipt_empresa">
+        <br>
+        <br>
+        <label for="ipt_ano" style="color:aliceblue">Insira o ano desejado para avaliação</label><br>
+        <input type="number" id="ipt_ano">
+        <br>
+        <br>
+        <label for="ipt_temperatura" style="color:aliceblue">Insira o número de dias no qual o silo registrou uma temperatura fora do adequado</label><br>
+        <input type="number" id="ipt_temperatura">
+        <br>
+        <br>
+        <label for="ipt_umidade" style="color:aliceblue">Insira o número de dias no qual o silo registrou de umidade
+            fora do adequado</label><br>
+        <input type="number" id="ipt_umidade">
+        <br>
+        <br>
+        <label for="ipt_silo" style="color:aliceblue">Insira o porte dos silos (Pequeno, Médio ou Grande)</label><br>
+        <input type="text" id="ipt_silo">
+        <button onclick="calcular()">Analisar dados</button>
+        <label for="ipt_silo" style="color: white"> <br> <br> Métricas de referência ao porte - <br> Silo pequeno: até
+            500 toneladas <br> Silo médio: até 5000 toneladas <br> Silo grande: acima de 5000 toneladas
+            <br>
+            <br>
+        </label>
+    </div>
+    <div id="div_resposta"></div>
+</body>
+<script>
+    function calcular() {
+        var empresa = ipt_empresa.value;
+        var anoAvaliação = Number(ipt_ano.value);
+        var diaTemperaturaExcedida = Number(ipt_temperatura.value);
+        var diaUmidadeExcedida = Number(ipt_umidade.value);
+        var diasTotais = diaTemperaturaExcedida + diaUmidadeExcedida;
+        var silo = ipt_silo.value;
+        var valorSilo=0;
+
+        if (silo == "Pequeno") {
+            var valorSilo=500;
+            if (diasTotais < 5 && diasTotais >= 0) {
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - dentro da faixa de erro padrão, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
+            }
+            else if (diasTotais > 5) {
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - acima da faixa adequada de falhas, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300}  reais para a empresa, durante o contexto analisado`
+            } else{
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Insira um número válido de dias`
+            }
+        }
+        if (silo == "Médio") {
+            var valorSilo = 5000;
+            if (diasTotais < 5 && diasTotais >= 0) {
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - dentro da faixa de erro padrão, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
+            }
+            else if (diasTotais > 5) {
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - acima da faixa adequada de falhas, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
+            } else{
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Insira um número válido de dias`
+            }
+        }
+        if (silo == "Grande") {
+            var valorSilo = 10000;
+            if (diasTotais < 5 && diasTotais >= 0) {
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - dentro da faixa de erro padrão, de cinco dias/ano.  Foram afetadas mais que ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
+            }
+            else if (diasTotais > 5) {
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - acima da faixa adequada de falhas, de cinco dias/ano.  Foram afetadas mais que ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício que ultrapassa R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
+            } else{
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Insira um número válido de dias`
+            }
+
+        }
+
+
+    }
+</script>
+
+</html>

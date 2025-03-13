@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora financeira</title>
+</head>
+
+<body>
+    <h1>Agrotech: Calculadora financeira.</h1>
+    <h2>Simule o quanto vai ganhar ou perder com sua safra de soja!</h2>
+    
+
+    <label for="ipt_quantidade">Insira a quantidade de soja de sua safra:</label><br>
+    <input type="number" id="ipt_quantidade" placeholder="-- Kg"> <br>
+
+    <label for="ipt_venda">Insira o preço que irá vender a saca:</label><br>
+    <input type="number" id="ipt_venda" placeholder="-- R$"><br>
+
+    <label for="ipt_temperatura">Insira a temperatura média do silo que armazena a sua safra de soja:</label><br>
+    <input type="number" id="ipt_temperatura" placeholder="-- °C"> <br>
+
+    <label for="ipt_umidade">Insira a umidade relativa do silo que armazena a sua safra de soja:</label><br>
+    <input type="number" id="ipt_umidade" placeholder="-- %"> <br><br>
+
+    <button onclick="calcular()">Calcular</button> <br><br>
+
+    <div id="div_resultado"></div>
+
+</body>
+
+<script>
+    
+    function calcular() {
+        var quant = Number(ipt_quantidade.value)
+        var temp = Number(ipt_temperatura.value)
+        var umidade = Number(ipt_umidade.value)
+        var preçoVenda = Number(ipt_venda.value)
+
+        var saca = quant / 60
+        var preçoSaca = saca * preçoVenda
+
+        var perda = quant * 0.2
+        var sacaPerdaQuant = saca * 0.2
+        var perdaFinanceira = sacaPerdaQuant * preçoVenda
+
+        if ((temp > 30 || temp < 20) && (umidade > 13 || umidade < 7)) {
+
+        div_resultado.innerHTML = `<h3 style="color: red;">CUIDADO!!!! ALERTA DE TEMPERATURA E UMIDADE!</h3> <h3>Você perderá ${perda} Kg da sua safra, o que corresponde perder ${sacaPerdaQuant} sacas de soja e R$${perdaFinanceira}! <br>
+        <h3 style="color: green;">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder 20% de seu lucro!<h3>`
+
+        } else if (temp > 30 && umidade > 13) {
+
+        div_resultado.innerHTML = `<h3 style="color: red;">CUIDADO!!! ALERTA DE TEMPERATURA E UMIDADE!</h3> <h3>Você perderá ${perda} Kg da sua safra, o que corresponde perder ${sacaPerdaQuant} sacas de soja e R$${perdaFinanceira}! <br>
+        <h3 style="color: green;">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder 20% de seu lucro!<h3>`
+
+        } else if (temp < 20 && umidade < 7) {
+
+        div_resultado.innerHTML = `<h3 style="color: rgb(255, 153, 0);">Sua safra não está com os parametros ideais!</h3> <h3>Você ainda pode perder ${perda} Kg de sua produção (20% da safra), o que corresponde perder ${sacaPerdaQuant} sacas de soja e R$${perdaFinanceira}! <br>
+        Use o projeto do grupo Agrotech e tenha um melhor aproveitamento e mais lucro!`
+
+        } else if (temp >= 20 && temp <= 30 && (umidade > 13 || umidade < 7)) {
+
+        div_resultado.innerHTML = `<h3 style="color: red;">CUIDADO!!! PROBLEMA DE UMIDADE!</h3> <h3>Você perderá ${perda} Kg da sua safra por conta da umidade desrregulada, o que corresponde perder ${sacaPerdaQuant} sacas de soja e R$${perdaFinanceira}!
+        <p>Com essa faixa de umidade relativa dentro do silo de soja a proliferação de fungos e pragas é muito maior e mais provável.</p>
+        <h3 style="color: green;">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder 20% de seu lucro!<h3>`
+
+        } else if ((temp > 30 || temp < 20) && umidade >= 7 && umidade <= 13) {
+
+        div_resultado.innerHTML = `<h3 style="color: red;">CUIDADO!!! PROBLEMA DE TEMPERATURA!</h3> <h3>Você perderá ${perda} Kg da sua safra por conta da temperatura desrregulada, o que corresponde perder ${sacaPerdaQuant} sacas de soja e R$${perdaFinanceira}! 
+        <p>Com essa faixa de temperatura, sua safra está mais suscetível á perder sua qualidade e/ou ter problemas com pragas.</p>
+        <h3 style="color: green;">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder 20% de seu lucro!<h3>`
+
+        } else {
+
+        div_resultado.innerHTML = `<h3 style="color: forestgreen;">Tudo certo por aqui!</h3> <h3>Mesmo tendo seus ${quant} Kg de soja sob controle, com o projeto do grupo Agrotech você terá o melhor monitoramento de temperatura e umidade, e a certeza de que não irá perder ${sacaPerdaQuant} sacas e R$${perdaFinanceira}.</h3>`
+
+        }
+
+    }
+
+</script>
+
+</html>
