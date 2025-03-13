@@ -31,11 +31,7 @@ h3{
 
 main{
     flex-direction: column;
-    background-color: rgb(8, 28, 59); 
-    /* background-image: url(IMAGEM_2_CAPA_ecossistema-dos-campos-de-soja-controlando-ameacas-do-ambiente.jpg); */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center; 
+    background-color: rgb(8, 28, 59);  
     gap: 0.8rem;
 
 }
@@ -51,15 +47,7 @@ input{
     font-size: 1rem;
 }
 
-a{
-    color: #ffffff;
-    text-decoration: none;
-}
-
-a:hover{
-    color: #e1850d;
-}
-
+ 
 button{
     background-color: #41b128;
     padding: 1rem;
@@ -81,7 +69,6 @@ button:hover{
 .verde{
     color: rgb(51, 219, 51);
 }
-img{
-    /* max-width: 14%; */
+img{ 
     max-height: 5rem;
 }
