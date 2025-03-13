@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 5rem 1fr 5rem;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    
+}
+
+header, main, footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#div_resultado{
+    margin: 20px;
+}
+h3{
+    font-size: 14pt;
+}
+
+main{
+    flex-direction: column;
+    background-color: rgb(8, 28, 59); 
+    /* background-image: url(IMAGEM_2_CAPA_ecossistema-dos-campos-de-soja-controlando-ameacas-do-ambiente.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+    gap: 0.8rem;
+
+}
+
+header, footer{
+    background-color: #176c91;
+}
+
+input{
+    padding: 4px;
+    border-radius: 0.2rem;
+    border: none;
+    font-size: 1rem;
+}
+
+a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #e1850d;
+}
+
+button{
+    background-color: #41b128;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 0.2rem;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+button:hover{
+    background-color: #106635;
+    transition: all ease-in-out 0.2s;
+}
+
+.vermelho{
+    color: rgb(204, 27, 27);
+}
+.verde{
+    color: rgb(51, 219, 51);
+}
+img{
+    /* max-width: 14%; */
+    max-height: 5rem;
+}
