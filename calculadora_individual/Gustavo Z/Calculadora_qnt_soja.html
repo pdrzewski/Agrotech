@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h2>Dados do silo:</h2>
+  <label for="altura_total">Insira a altura em metros <b>total</b> do silo </label> <input type="number" id="altura_total"> <label for="ipt_area_total">insira a  <b>area total </b> da base do seu silo</label>   <input type="number" id="ipt_area_total"> <br> <br>
+
+
+  <h2>Dados da soja estocada :</h2>
+
+ 
+  <label for="ipt_altura_1">Insira a <b>altura 1</b> dos grãos no seu silo</label> <br>
+  <input type="text" id="ipt_altura_1"><br>
+  <label for="ipt_altura_2">Insira a <b>altura 2</b> dos grãos no seu silo</label> <br>
+  <input type="text" id="ipt_altura_2"><br>
+  <label for="ipt_altura_3">Insira a <b>altura 3</b> dos grãos no seu silo</label> <br>
+  <input type="text" id="ipt_altura_3"><br>
+<br>
+<label for="ipt_area">Insira a area da base da pilha de soja m²</label> <br>  
+<input type="number" id="ipt_area"> <br>
+<br>
+<button onclick="calcular ()">Calcular quantidade de grãos</button>
+</body>
+<br>
+<div id="div"></div> 
+<div id="div_2"></div>
+<div id="div_3"></div>
+<div style="color: red;" id="div_4"></div>
+<script>
+function calcular () {
+  var altura =  (Number (ipt_altura_1.value) + Number (ipt_altura_2.value) + Number (ipt_altura_3.value)) / 3
+  var volume = altura * ipt_area.value
+   var peso = 770 * volume
+   var preço = peso * 2 
+    div.innerHTML = `Seu silo tem em media ${peso} kg de soja`
+
+    var volume_total = altura_total.value * ipt_area_total.value
+    var peso_total = volume_total * 770
+    var peso_aceitavel = peso_total * 0.9
+    var porcentagem = volume * 100 / volume_total
+
+    
+
+  div_2.innerHTML = `Seu silo suporta um total de ${peso_total} kg de soja `
+
+  div_3.innerHTML = `Você está usando um total de ${porcentagem} % do que o seu silo suporta`
+  if (porcentagem > 90) {div_4.innerHTML = `Você deve reduzir o total de soja armazenada para um maximo de 90% da sua capacidade, ou seja ${peso_aceitavel} Kg ou você pode perder até ${preço} reais`; alert (`Você tem mais soja do que o total seguro para o seu silo`)}
+    
+
+}
+
+</script>
+</html>
