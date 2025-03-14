@@ -74,22 +74,12 @@ values ('umidade', 10, 100),
       
 -- Selects Gerais dos dados das tabelas --
 
-   select re as 'Registro de Empresa', usuario as 'Usuário', senha as 'Senha' from usuario;
+   select re as 'RE', usuario as 'Usuário', senha as 'Senha' from usuario;
    
-   select idDado as 'Número de registro', data as 'Data', horario as 'Horário', temperatura as 'Temperatura', umidade as 'Umidade relativa' from dadosAR; 
+   select idDado as 'Registro', data as 'Data', horario as 'Horário', temperatura as 'Temperatura', umidade as 'Umidade relativa' from dadosAR; 
    
    select tipo as 'Tipo de Alerta', fkusuario as 'Código de Usuário', fkdado as 'Código de Registro do Dado' from alerta;
    
--- Selects específicos dos dados das tabelas --
+-- Select específicos dos dados das tabelas --
 
-select fkusuario from alerta where tipo='umidade';
-select re as 'Registro da Empresa', usuario as 'Usuário', senha as 'Senha' from usuario where re in(10,11,14,17,18); -- Alertas de umidade
-
-select fkusuario from alerta where tipo='temperatura';
-select re as 'Registro da Empresa', usuario as 'Usuário', senha as 'Senha' from usuario where re in(12,13); -- Alertas de temperatura
-
-select fkusuario from alerta where tipo='temperatura e umidade';
-select re as 'Registro da Empresa', usuario as 'Usuário', senha as 'Senha' from usuario where re in(15); -- Alertas de temperatura e umidade
-
-select fkusuario from alerta where tipo='dentro dos parâmetros';
-select re as 'Registro da Empresa', usuario as 'Usuário', senha as 'Senha' from usuario where re in(16); -- Dentro dos parâmetros
+select * from alerta order by tipo desc;
