@@ -88,7 +88,7 @@
 
             div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! ALERTA DE TEMPERATURA E UMIDADE!</h3> 
             <h3>Você perderá aproximadamente ${perda.toFixed(2)}Kg da sua safra, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}! <br>
-            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 20% de seu lucro!<h3>`
+            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 30% de seu lucro!<h3>`
 
             }  
 
@@ -97,14 +97,14 @@
             div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! PROBLEMA DE UMIDADE!</h3> 
             <h3>Você perderá aproximadamente ${perda.toFixed(2)}Kg da sua safra por conta da umidade desrregulada, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}!
             <p>Com essa faixa de umidade relativa dentro do silo de soja a proliferação de fungos e pragas é muito maior e mais provável.</p>
-            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 20% de seu lucro!<h3>`
+            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 30% de seu lucro!<h3>`
 
             } else if ((temp > 30 || temp < 20) && umidade >= 7 && umidade <= 13) {
 
             div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! PROBLEMA DE TEMPERATURA!</h3> 
             <h3>Você perderá aproximadamente ${perda.toFixed(2)}Kg da sua safra por conta da temperatura desrregulada, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}! 
             <p>Com essa faixa de temperatura, sua safra está mais suscetível á perder sua qualidade e/ou ter problemas com pragas.</p>
-            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 20% de seu lucro!<h3>`
+            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 30% de seu lucro!<h3>`
 
             } else {
 
