@@ -63,8 +63,8 @@
         var saca = quant / 60
         var preçoSaca = saca * preçoVenda
 
-        var perda = quant * 0.2
-        var sacaPerdaQuant = saca * 0.2
+        var perda = quant * 0.3
+        var sacaPerdaQuant = saca * 0.3
         var perdaFinanceira = sacaPerdaQuant * preçoVenda
 
         if(quant<0||preçoVenda<0){
@@ -83,7 +83,7 @@
         else{
            
 
-
+            //.toFixed(2) implica quantas casas decimais o html mostra
             if ((temp > 30 || temp < 20) && (umidade > 13 || umidade < 7)) {
 
             div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! ALERTA DE TEMPERATURA E UMIDADE!</h3> 
