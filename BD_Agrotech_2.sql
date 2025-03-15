@@ -50,27 +50,28 @@ values ('AgroPop99034', 'AgroX7pL'),
        ('CropCare058', 'CropK2gT');
 -----------------------------------------------------       
 insert into dadosAR (data, horario, temperatura, umidade, silo)
-values ('2023-04-15', '08:23', '22°C', '65%', 2),
-       ('2023-07-29', '14:45', '30°C', '30%', 1),
-       ('2024-01-05', '06:30', '12°C', '20%', 2),
-       ('2024-05-22', '12:15', '35°C', '15%', 1),
-       ('2024-08-14', '21:50', '24°C', '70%', 3),
-       ('2024-10-30', '16:37', '33°C', '45%', 3),
-       ('2024-12-25', '04:05', '15°C', '10%', 1),
-       ('2025-02-10', '09:55', '20°C', '60%', 2),
-       ('2025-02-27', '22:40', '27°C', '5%', 1);
+values ('2023-04-15', '08:23', '22°C', '65%', 2), 
+       ('2023-07-29', '14:45', '30°C', '30%', 1), 
+       ('2024-01-05', '06:30', '12°C', '20%', 2), 
+       ('2024-05-22', '12:15', '35°C', '15%', 1), 
+       ('2024-08-14', '21:50', '24°C', '70%', 3), 
+       ('2024-10-30', '16:37', '33°C', '45%', 3), 
+       ('2024-12-25', '04:05', '15°C', '10%', 1), 
+       ('2025-02-10', '09:55', '20°C', '60%', 2), 
+       ('2025-02-27', '22:40', '27°C', '5%', 1);  
 -----------------------------------------------------
 insert into alerta (tipo, fkusuario, fkdado)
 values ('umidade', 10, 100),
        ('umidade', 11, 101),
-       ('temperatura', 12, 102),
-       ('temperatura', 13, 103),
+       ('temperatura e umidade', 12, 102),
+       ('temperatura e umidade', 13, 103),
        ('umidade', 14, 104),
        ('temperatura e umidade', 15, 105),
-       ('dentro dos parâmetros', 16, 106),
+       ('temperatura', 16, 106),
        ('umidade', 17, 107),
        ('umidade', 18, 108);
        
+     
       
 -- Selects Gerais dos dados das tabelas --
 
@@ -80,6 +81,12 @@ values ('umidade', 10, 100),
    
    select tipo as 'Tipo de Alerta', fkusuario as 'Código de Usuário', fkdado as 'Código de Registro do Dado' from alerta;
    
--- Select específicos dos dados das tabelas --
+   
+-- Select com os dados mais importantes  --
 
-select * from alerta order by tipo desc;
+select idDado as 'Registro', data as 'Data', horario as 'Horário', temperatura as 'Temperatura', umidade as 'Umidade relativa',   
+case when (temperatura<20 or temperatura>30) and (umidade<7 or umidade>13) then 'temperatura e umidade'
+     when (temperatura<20 or temperatura>30) then 'temperatura'
+     when (umidade<7 or umidade>13) then 'umidade'
+     end as 'Tipo de alerta'
+from dadosAR;
