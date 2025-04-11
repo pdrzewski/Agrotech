@@ -13,34 +13,19 @@ int umidade_static_variablemax = 13;// variavel da umidade máxima
 void setup() {
 Serial.begin(9600);//taxa de bits que é transferido entre o arduino e a porta serial usb
 sensorDHT.begin();//inicia o método da biblioteca
-
 }
 
 void loop() { //método em loop, será executado constantemente
 // variaveis float que pegam o valor através da leitura dos sensor
 float umidade = sensorDHT.readHumidity(); //lê a umidade e atribui a variável umidade
 float temperatura = sensorDHT.readTemperature(); //lê a temperatura e atribui a variável temperatura
-umidade= umidade - 31;// ajuste para a faixa de umidade
+umidade= umidade - 4;// ajuste para a faixa de umidade
 
 if(isnan (temperatura) || isnan(umidade)){ //se a temperatura ou a umidade não for um númeroa
 Serial.println("Erro ao ler os dados do sensor"); //printa no console e quebra a linha
 }else {//se não for nulo
-Serial.print("umidade_mínima:");
-Serial.print(umidade_static_variablemin); //definição da label da variavel de umidade mínima
-Serial.print(",");
-Serial.print("umidade_máxima:");
-Serial.print(umidade_static_variablemax); //definição da label da variavel de umidade máxima
-Serial.print(",");
-Serial.print("umidade_atual:");
 Serial.print(umidade); // definição da label da variavel de umidade atual
-Serial.print(",");
-Serial.print("temperatura_mínima:");
-Serial.print(static_variablemin);// definição da label da variavel da temperatura mínima
-Serial.print(",");
-Serial.print("temperatura_máxima:");
-Serial.print(static_variablemax);// definição da label da variavel de temperatura máxima
-Serial.print(",");
-Serial.print("temperatura_atual:");// definição da label da variavel de temperatura atual
+Serial.print(";");
 Serial.println(temperatura);
 }
 
