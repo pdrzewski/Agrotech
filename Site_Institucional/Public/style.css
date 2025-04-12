@@ -127,7 +127,7 @@ body {
     width: 190px;
     transition: 0.5s;
     background-color: #015579;
-    
+    cursor: pointer;
 }
 
 
