@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+}
+
+:root {
+    --tamanho-header: 80px;
+    --tamanho-footer: 90px;
+    --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+}
+
+/*Header*/
+
+.header {
+    height: var(--tamanho-header);
+    background-color: #176C91; 
+}
+
+.container {
+    display: flex;
+    width: 95%;
+    margin: auto;
+}
+
+.header img {
+    width: 80px;
+}
+
+.navbar {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    color: white;
+}
+
+.navbar .div_esquerda {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
+.navbar .div_direita {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    width: 100%;
+} 
+
+
+
+.header a {
+    text-decoration: none;
+    color: white;
+}
+
+.agora {
+    font-weight: 800;
+}
+
+/*Header*/
+
+.banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(./imagens/soja.jpg);
+    height: 600px;
+    background-size: cover;
+    gap:15px;
+}
+.banner img{
+    width: 200px;
+    height: 100px;
+}
+.caixa{
+    margin-top: 1%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   background-color: #ffffff;
+   box-shadow:  black 8px 8px 8px 0px;
+   gap: 15px;
+   width: 20%;
+   border-radius: 10px;
+   padding: 2%;
+}
+.caixa:hover{
+    box-shadow:  black 10px 10px 10px 0px;
+    padding: 3%;
+   transition: 1s;
+}
+.campo input {
+    padding: 10px;
+}
+.campo input:hover {
+    padding: 12px;
+    transition: 0.5s;
+}
+
+.botao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3a8bae;
+    height: 40px;
+    width: 185px;
+    padding: 8px;
+    font-size: 25px;
+    color: white;
+}
+
+.botao:hover{
+    height: 45px;
+    width: 190px;
+    transition: 0.5s;
+    background-color: #015579;
+    
+}
+
+
+
