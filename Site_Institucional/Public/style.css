@@ -55,9 +55,8 @@ body {
     justify-content: flex-end;
     gap: 30px;
     width: 100%;
+    margin-right: 10px;
 }
-
-
 
 .header a {
     text-decoration: none;
@@ -144,4 +143,90 @@ body {
     transition: 0.5s;
     background-color: #015579;
     cursor: pointer;
+}
+
+/* Monitoramento */
+
+.navbar .img_fundo_azul {
+    height: calc(var(--tamanho-header) * 0.8);
+    width: auto;
+}
+
+#grafico_temperatura {
+    height: 300px;
+    width: 600px;
+}
+
+#grafico_umidade {
+    height: 300px;
+    width: 600px;
+}
+
+.boxes_dados {
+    width: 100%;
+}
+
+.monitoramento {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.monitoramento h6 {
+    margin: 10px 0;
+    font-size: 40px;
+}
+
+.monitoramento .alerta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    border: rgb(0, 0, 0) solid;
+    border-radius: 10px;
+    border-style: dashed;
+    width: 350px;
+    height: 40px;
+}
+
+.grafico {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: #015579 solid;
+    padding: 15px;
+    width: 90%;
+}
+
+#sel_silo {
+    height: 30px;
+    width: 70px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #d3d1d1;
+    font-weight: 700;
+}
+
+.historico {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-top: #015579 solid;
+    margin-top: 25px;
+}
+
+.historico h6 {
+    margin: 10px 0;
+    font-size: 40px;
+}
+
+.img_dados_teste {
+    margin: 0;
+    border: #015579 solid;
+    height: 300px;
 }

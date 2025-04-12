@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="navbar">
+            <img src="./img/Logo-Azul.png">
+            <div class="div_esquerda">
+                <li class="agora">
+                    <a href="#monitoramento">Monitoramento</a>
+                </li>
+                <li class="">
+                    <a href="#historico">Histórico</a>
+                </li>
+            </div>
+            <div>
+                <img class="img_fundo_azul" src="./img/Agrotech-Fundo-Azul.png">
+            </div>
+            <div class="div_direita">
+                <li class="">
+                    <a href="">Usuário</a>
+                </li>
+            </div>
+            <img src="./img/person-circle.svg" alt="Usuário">
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="boxes_dados">
+                <div class="monitoramento" id="monitoramento">
+                    <div>
+                        <h6>Monitoramento em tempo real</h6>
+                    </div>
+                    <div>
+                        <select name="Silo" id="sel_silo">
+                            <option value="silo1">Silo 1</option>
+                            <option value="silo2">Silo 2</option>
+                        </select>
+                    </div>
+                    <div class="alerta">
+                        <p>⚠️ Quantidade de alertas: 0</p>
+                    </div>
+                    <div class="grafico">
+                        <div>
+                            <canvas id="grafico_temperatura"></canvas>
+                        </div>
+                        <div>
+                            <canvas id="grafico_umidade"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="historico" id="historico">
+                    <div>
+                        <h6>Histórico dos dados</h6>
+                    </div>
+                    <div>
+                        <img class="img_dados_teste" src="./img/Dados_teste.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const temperatura = document.getElementById('grafico_temperatura');
+
+    new Chart(temperatura, {
+        type: 'line',
+        data: {
+            labels: ['18:30:00', '18:30:01', '18:30:02', '18:30:03', '18:30:04', '18:30:05', '18:30:06', '18:30:07', '18:30:08'],
+            datasets: [{
+                label: 'Temperatura',
+                data: [24.4, 24.4, 24.5, 24.6, 24.5, 24.4, 24.6, 24.8, 25],
+                backgroundColor: '#3cff66',
+                borderColor: '#3cff66',
+            },
+            {
+                label: 'Temperatura_máxima',
+                data: [30, 30, 30, 30, 30, 30, 30, 30, 30],
+                backgroundColor: '#f12c2c',
+                borderColor: '#f12c2c',
+            },
+            {
+                label: 'Temperatura_mínima',
+                data: [20, 20, 20, 20, 20, 20, 20, 20, 20],
+                backgroundColor: '#1c55f1',
+                borderColor: '#1c55f1',
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    min: 18,
+                    max: 31,
+                }
+            }
+        }
+    });
+
+    const umidade = document.getElementById('grafico_umidade');
+
+    new Chart(umidade, {
+        type: 'line',
+        data: {
+            labels: ['18:30:00', '18:30:01', '18:30:02', '18:30:03', '18:30:04', '18:30:05', '18:30:06', '18:30:07', '18:30:08'],
+            datasets: [{
+                label: 'Umidade',
+                data: [14, 14, 13, 13, 14, 13, 12, 13, 14],
+                backgroundColor: '#3cff66',
+                borderColor: '#3cff66',
+            },
+            {
+                label: 'Umidade_máxima',
+                data: [14, 14, 14, 14, 14, 14, 14, 14, 14],
+                backgroundColor: '#f12c2c',
+                borderColor: '#f12c2c',
+            },
+            {
+                label: 'Umidade_mínima',
+                data: [12, 12, 12, 12, 12, 12, 12, 12, 12],
+                backgroundColor: '#1c55f1',
+                borderColor: '#1c55f1',
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    min: 11,
+                    max: 15,
+                }
+            }
+        }
+    });
+</script>
+
+</html>
