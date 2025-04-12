@@ -92,6 +92,11 @@ body {
    border-radius: 10px;
    padding: 2%;
 }
+.titulo{
+    margin: 0;
+    color: #176C91;
+    
+}
 .caixa:hover{
     box-shadow:  black 10px 10px 10px 0px;
     padding: 3%;
