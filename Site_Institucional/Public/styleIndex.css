@@ -18,7 +18,10 @@ body {
 .header {
     height: var(--tamanho-header);
     background-color: #176C91;
-    
+}
+
+.navbar {
+    height: 100%;
 }
 
 .container {
@@ -52,9 +55,7 @@ body {
     justify-content: flex-end;
     gap: 30px;
     width: 100%;
-} 
-
-
+}
 
 .header a {
     text-decoration: none;
@@ -151,11 +152,11 @@ main .container .boxes .img_logo {
     margin-top: 50px;
 }
 
-.ModeloDeNegócio h6{
+.ModeloDeNegócio h6 {
     text-align: center;
 }
 
-.ModeloDeNegócio img{
+.ModeloDeNegócio img {
     width: 100%;
     border: #176C91 solid 4px;
 }

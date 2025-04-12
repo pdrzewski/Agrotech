@@ -17,7 +17,11 @@ body {
 
 .header {
     height: var(--tamanho-header);
-    background-color: #176C91; 
+    background-color: #176C91;
+}
+
+.navbar {
+    height: 100%;
 }
 
 .container {
@@ -51,7 +55,7 @@ body {
     justify-content: flex-end;
     gap: 30px;
     width: 100%;
-} 
+}
 
 
 
@@ -73,44 +77,54 @@ body {
     background-image: url(./imagens/soja.jpg);
     height: 600px;
     background-size: cover;
-    gap:15px;
+    gap: 15px;
 }
-.banner img{
+
+.banner img {
     width: 200px;
     height: 100px;
 }
-.caixa{
+
+.caixa {
     margin-top: 1%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   background-color: #ffffff;
-   box-shadow:  black 8px 8px 8px 0px;
-   gap: 15px;
-   width: 20%;
-   border-radius: 10px;
-   padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: black 8px 8px 8px 0px;
+    gap: 10px;
+    width: 20%;
+    border-radius: 10px;
+    padding: 2%;
 }
-.titulo{
+
+.titulo {
     margin: 0;
     color: #176C91;
-    
+    font-size: 20px;
 }
-.caixa:hover{
-    box-shadow:  black 10px 10px 10px 0px;
+
+.titulo h3 {
+    margin: 0;
+}
+
+.caixa:hover {
+    box-shadow: black 10px 10px 10px 0px;
     padding: 3%;
-   transition: 1s;
+    transition: 1s;
 }
+
 .campo input {
     padding: 10px;
 }
+
 .campo input:hover {
     padding: 12px;
     transition: 0.5s;
 }
 
-.botao{
+.botao {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,15 +134,14 @@ body {
     padding: 8px;
     font-size: 25px;
     color: white;
+    margin-top: 8px;
+    border-radius: 5px;
 }
 
-.botao:hover{
+.botao:hover {
     height: 45px;
     width: 190px;
     transition: 0.5s;
     background-color: #015579;
     cursor: pointer;
 }
-
-
-
