@@ -45,14 +45,28 @@
             </div>
             <div class="campo">
                 <p>Senha:</p>
-                <input type="text" id="senha_input" placeholder="Ex: AgroMoni@01">
+                <input type="password" id="senha_input" placeholder="Ex: AgroMoni@01">
             </div>
-            <button class="botao">Entrar</button>
+            <button class="botao" onclick="login()">Entrar</button>
         </div>
 
 </body>
+
 <footer>
 
 </footer>
+
+<script>
+    function login() {
+        var usuario = usuario_input.value;
+        var senha = senha_input.value;
+        if (usuario == 'Gerência' && senha == 'AgroMoni@01'){
+            window.location = "./monitoramento.html";
+        }
+        else {
+            alert('Usuário ou senha incorretos.');
+        }
+    }
+</script>
 
 </html>
