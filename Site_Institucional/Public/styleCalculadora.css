@@ -1,0 +1,73 @@
+*{ /* tira o css definido pelo próprio navegador  */
+    margin: 0;
+    padding: 0;
+    
+}
+
+body{
+    width: 100vw; /* largura do body */
+    height: 100vh;/* altura do body */
+    display: grid;/* organização dos blocos */
+    grid-template-rows: 5rem 1fr 5rem; /* definindo o tamanhdo do header, main, footer */
+    color: #ffffff;/* cor da fonte */
+    font-family: sans-serif;/* estilo da fonte */
+    font-size: 1.2rem;/* tamanho da fonte */
+    
+}
+
+header, main, footer{
+    display: flex; /* organização de blocos */
+    justify-content: center; /* centraliza verticalmente*/
+    align-items: center; /* centraliza horizontalmente*/
+}
+
+#div_resultado{
+    margin: 20px; /*define margem*/
+}
+h3{
+    font-size: 14pt;
+}
+
+main{
+    flex-direction: column; /* coloca os blocos em colunas */
+    background-color: rgb(8, 28, 59);  
+    gap: 0.8rem; /* espaçamento entre as colunas */
+
+}
+
+header, footer{
+    background-color: #176c91;
+}
+
+input{
+    padding: 4px;
+    border-radius: 0.2rem;/* arredonda as pontas do input */
+    border: none; /* removendo a borda definida por padrão*/
+    font-size: 1rem;
+}
+
+ 
+button{
+    background-color: #41b128;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 0.2rem; /* arredonda as pontas do input */
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+button:hover{ /* :hover. Quando colocar o mouse em cima*/
+    background-color: #106635;
+    transition: all ease-in-out 0.2s;
+}
+
+.vermelho{
+    color: rgb(204, 27, 27);
+}
+.verde{
+    color: rgb(51, 219, 51);
+}
+img{ 
+    max-height: 5rem;
+}

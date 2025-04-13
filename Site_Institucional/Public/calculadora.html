@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira Agrotech </title>
+    <link rel="stylesheet" href="styleCalculadora.css"> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="navbar">
+            <img src="./img/Logo-Azul.png">
+            <div class="div_esquerda">
+                <li class="">
+                    <a href="./Site-Institucional.html">Sobre nós</a>
+                </li>
+                <li class="agora">
+                    <a href="./calculadora.html">Simulador</a>
+                </li>
+                <li class="">
+                    <a href="">Contatos</a>
+                </li>
+            </div>
+            <div class="div_direita">
+                <li class="">
+                    <a href="./login.html">Login</a>
+                </li>
+                <li class="">
+                    <a href="./cadastro.html">Cadastro</a>
+                </li>
+            </div>
+        </div>
+    </div>
+     
+    <main>
+        <h1>Agrotech: Calculadora financeira.</h1>
+        <h2>Simule o quanto vai ganhar ou perder com sua safra de soja!</h2>
+        <br> <br>
+    
+        <div class="labelinput">
+            <label for="ipt_quantidade">Insira a quantidade de soja de sua safra (Kg):</label>
+            <input type="number" id="ipt_quantidade" placeholder="-- Kg"> 
+        </div>
+
+        <div class="labelinput">
+            <label for="ipt_venda">Insira o preço que irá vender a saca (Reais):</label>
+            <input type="number" id="ipt_venda" placeholder="-- R$">
+        </div>
+
+        <div class="labelinput">
+            <label for="ipt_temperatura">Insira a temperatura média do silo que armazena a sua safra de soja (C°):</label>
+            <input type="number" id="ipt_temperatura" placeholder="-- °C"> 
+        </div>
+
+        <div class="labelinput"> 
+            <label for="ipt_umidade">Insira a umidade relativa do silo que armazena a sua safra de soja (%):</label>
+            <input type="number" id="ipt_umidade" placeholder="-- %"> 
+        </div>
+
+
+
+        <div id="div_resultado"></div>
+    
+
+    <button onclick="calcular()">Calcular</button> 
+
+
+    </main>
+
+    <footer>
+
+    </footer>
+    
+</body>
+<script>
+    
+     
+    function calcular() {
+        var quant = Number(ipt_quantidade.value)
+        var temp = Number(ipt_temperatura.value)
+        var umidade = Number(ipt_umidade.value)
+        var preçoVenda = Number(ipt_venda.value)
+
+        var saca = quant / 60
+        var preçoSaca = saca * preçoVenda
+
+        var perda = quant * 0.3
+        var sacaPerdaQuant = saca * 0.3
+        var perdaFinanceira = sacaPerdaQuant * preçoVenda
+
+        if(quant<0||preçoVenda<0){
+            alert('parâmetros negativos, tente com positivos')
+        }else if(temp>50){
+            div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! ALERTA DE TEMPERATURA MÁXIMA ATINGIDA!</h3> `
+        }else if(temp<0){
+            div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! ALERTA DE TEMPERATURA MÍNIMA ATINGIDA</h3> `
+        }else if(umidade>70){
+            div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! ALERTA DE UMIDADE MÁXIMA ATINGIDA!</h3> `
+        }else if(umidade<0){
+            alert('umidade inserida inválida')
+        }else if(umidade<2){
+            div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! ALERTA DE UMIDADE MÍNIMA ATINGIDA!</h3> `
+        }
+        else{
+           
+
+            //.toFixed(2) implica quantas casas decimais o html mostra
+            if ((temp > 30 || temp < 20) && (umidade > 13 || umidade < 7)) {
+
+            div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! ALERTA DE TEMPERATURA E UMIDADE!</h3> 
+            <h3>Você perderá aproximadamente ${perda.toFixed(2)}Kg da sua safra, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}! <br>
+            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 30% de seu lucro!<h3>`
+
+            }  
+
+            else if (temp >= 20 && temp <= 30 && (umidade > 13 || umidade < 7)) {
+
+            div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! PROBLEMA DE UMIDADE!</h3> 
+            <h3>Você perderá aproximadamente ${perda.toFixed(2)}Kg da sua safra por conta da umidade desrregulada, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}!
+            <p>Com essa faixa de umidade relativa dentro do silo de soja a proliferação de fungos e pragas é muito maior e mais provável.</p>
+            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 30% de seu lucro!<h3>`
+
+            } else if ((temp > 30 || temp < 20) && umidade >= 7 && umidade <= 13) {
+
+            div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! PROBLEMA DE TEMPERATURA!</h3> 
+            <h3>Você perderá aproximadamente ${perda.toFixed(2)}Kg da sua safra por conta da temperatura desrregulada, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}! 
+            <p>Com essa faixa de temperatura, sua safra está mais suscetível á perder sua qualidade e/ou ter problemas com pragas.</p>
+            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 30% de seu lucro!<h3>`
+
+            } else {
+
+            div_resultado.innerHTML = `<h3 class="verde">Tudo certo por aqui!</h3> 
+                <h3>Seus ${quant} kg de soja estão sob controle. </h3>
+                <h3>Não corra o risco de perder ${sacaPerdaQuant} sacas e ${perdaFinanceira} reais. </h3>
+                <br>
+                <h3><i><b>Com a AgroTech, a seguraçanca da sua soja deixa de ser uma sorte e se torna uma certeza.</b></i></h3>`
+            }
+         
+        }
+    }
+
+</script>
+</html>
