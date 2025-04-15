@@ -40,12 +40,12 @@
                 <h3>Cadastro</h3>
             </div>
             <div class="campo">
-                <p>E-mail da Empresa:</p>
-                <input type="text" id="email_input" placeholder="Ex: gerente@gmail.com.br">
+                <p>Registro da Empresa:</p>
+                <input type="text" id="empresa_input" placeholder="Ex: 1000">
             </div>
             <div class="campo">
-                <p>Usuário:</p>
-                <input type="text" id="usuario_input" placeholder="Ex: Gerência">
+                <p>E-mail do Usuário:</p>
+                <input type="text" id="email_input" placeholder="Ex: gerente@agrotech.com.br">
             </div>
             <div class="campo">
                 <p>Senha:</p>
@@ -96,15 +96,15 @@
 <script>
     function cadastro() {
 
+        var empresa = empresa_input.value;
         var email = email_input.value;
-        var usuario = usuario_input.value;
         var senha = senha_input.value;
 
         while (true) {
-            if (email.includes('@gmail.com') || email.includes('@hotmail.com')) {
+            if (email.includes('@') && email.includes('.com')) {
                 if (senha.length > 9) {
-                    if (usuario != '' && usuario.length > 4) {
-                        alert(`Cadastro concluido com sucesso, ${usuario}.`);
+                    if (email != '' && email.length > 4) {
+                        alert(`Cadastro concluido com sucesso, ${email}.`);
                         window.location = "./monitoramento.html";
                     } else {
                         alert(`O nome de usuário deve conter mais de 4 caracteres e não pode estar vazio.`);
@@ -114,7 +114,7 @@
                 }
             }
             else {
-                alert(`O email precisa conter @gmail.com ou @hotmail.com`);
+                alert(`O email precisa conter @ e .com.`);
             }
             break;
         }
