@@ -181,15 +181,22 @@ body {
 
 .monitoramento .alerta {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 50px;
     align-items: center;
     font-size: 20px;
     font-weight: 700;
     border: rgb(0, 0, 0) solid;
     border-radius: 10px;
     border-style: dashed;
-    width: 350px;
+    width: 500px;
     height: 40px;
+}
+
+.monitoramento .alerta_temp_umid {
+    color: red;
+    font-weight: 700;
+    text-decoration: underline;
 }
 
 .grafico {

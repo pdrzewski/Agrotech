@@ -46,8 +46,10 @@
                         </select>
                     </div>
                     <div class="alerta">
-                        <p>⚠️ Quantidade de alertas: 0</p>
+                        <p>⚠️ Quantidade de alertas: 1</p>
+                        <p id="verificar_alerta">Verificar silo: 1</p>
                     </div>
+                    <div class="alerta_temp_umid">Umidade acima do esperado!</div>
                     <div class="grafico">
                         <div>
                             <canvas id="grafico_temperatura"></canvas>
@@ -113,26 +115,26 @@
 
 <script>
     const temperatura = document.getElementById('grafico_temperatura');
-
+    
     new Chart(temperatura, {
         type: 'line',
         data: {
-            labels: ['18:30:00', '18:30:01', '18:30:02', '18:30:03', '18:30:04', '18:30:05', '18:30:06', '18:30:07', '18:30:08'],
+            labels: ['18:30:00', '18:30:01', '18:30:02', '18:30:03', '18:30:04', '18:30:05', '18:30:06', '18:30:07', '18:30:08', '18:30:09'],
             datasets: [{
                 label: 'Temperatura média',
-                data: [24.4, 24.4, 24.5, 24.6, 24.5, 24.4, 24.6, 24.8, 25],
+                data: [24.4, 24.4, 24.5, 24.6, 24.5, 24.4, 24.6, 24.8, 25, 25.5],
                 backgroundColor: '#3cff66',
                 borderColor: '#3cff66',
             },
             {
                 label: 'Temperatura_máxima',
-                data: [30, 30, 30, 30, 30, 30, 30, 30, 30],
+                data: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
                 backgroundColor: '#f12c2c',
                 borderColor: '#f12c2c',
             },
             {
                 label: 'Temperatura_mínima',
-                data: [20, 20, 20, 20, 20, 20, 20, 20, 20],
+                data: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
                 backgroundColor: '#1c55f1',
                 borderColor: '#1c55f1',
             }]
@@ -156,22 +158,22 @@
     new Chart(umidade, {
         type: 'line',
         data: {
-            labels: ['18:30:00', '18:30:01', '18:30:02', '18:30:03', '18:30:04', '18:30:05', '18:30:06', '18:30:07', '18:30:08'],
+            labels: ['18:30:00', '18:30:01', '18:30:02', '18:30:03', '18:30:04', '18:30:05', '18:30:06', '18:30:07', '18:30:08', '18:30:09'],
             datasets: [{
                 label: 'Umidade média',
-                data: [14, 14, 13, 13, 14, 13, 12, 13, 14],
+                data: [14, 14, 13, 13, 14, 13, 12, 13, 14, 15],
                 backgroundColor: '#3cff66',
                 borderColor: '#3cff66',
             },
             {
                 label: 'Umidade_máxima',
-                data: [14, 14, 14, 14, 14, 14, 14, 14, 14],
+                data: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14],
                 backgroundColor: '#f12c2c',
                 borderColor: '#f12c2c',
             },
             {
                 label: 'Umidade_mínima',
-                data: [12, 12, 12, 12, 12, 12, 12, 12, 12],
+                data: [12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
                 backgroundColor: '#1c55f1',
                 borderColor: '#1c55f1',
             }]

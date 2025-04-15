@@ -1,4 +1,5 @@
 create database agrotech;
+
 use agrotech;
 
 create table Empresa (
@@ -29,7 +30,7 @@ create table Sensor (
     
 create table Dados(
     id int primary key auto_increment,
-    data_dado datetime,
+    data_dado datetime default current_timestamp,
     temperatura decimal(4,2),
     umidade decimal(4,2),
     fkSensor int,
@@ -75,3 +76,9 @@ INSERT INTO Dados (data_dado, temperatura, umidade, fkSensor) VALUES
 ('2025-04-15 12:15:00', 28.5, 62.8, 5),
 ('2025-04-15 12:30:00', 27.3, 60.1, 6),
 ('2025-04-15 12:45:00', 26.8, 59.5, 6);
+
+SELECT * FROM Empresa;
+SELECT * FROM Usuario;
+SELECT * FROM Silo;
+SELECT * FROM Sensor;
+SELECT * FROM Dados;
