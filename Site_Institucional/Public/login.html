@@ -7,6 +7,7 @@
     <title>Login AgroTech</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <div class="header">
     <div class="navbar">
         <img src="./img/Logo-Azul.png">
@@ -18,7 +19,7 @@
                 <a href="./calculadora.html">Simulador</a>
             </li>
             <li class="">
-                <a href="">Contatos</a>
+                <a href="#footer">Contatos</a>
             </li>
         </div>
         <div class="div_direita">
@@ -49,7 +50,8 @@
             </div>
             <button class="botao" onclick="login()">Entrar</button>
         </div>
-        <div id="footer_icons">
+
+        <div class="footer" id="footer">
             <div>
                 <img src="./img/Agrotech-Fundo-Azul.png" alt="logo/agrotech" id="agrotech_logo">
                 <p class="texto_footer">Empresa número 1 em tecnologia no <br> setor agropecuário</p>
@@ -87,24 +89,35 @@
                 <p>Cerqueira César, São Paulo - SP</p>
                 <p>01414-001</p>
             </div>
-
         </div>
 
 </body>
 
-<footer>
-
-</footer>
-
 <script>
+    let usuario1 = 'Gerência';
+    let senha1 = 'AgroMoni@01';
+    var qtdTentativas = 2;
+    var contador = 0;
     function login() {
         var usuario = usuario_input.value;
         var senha = senha_input.value;
-        if (usuario == 'Gerência' && senha == 'AgroMoni@01'){
-            window.location = "./monitoramento.html";
-        }
-        else {
-            alert('Usuário ou senha incorretos.');
+
+        while (contador <= 3) {
+            if (contador == 2) {
+                alert("Desculpe, você atingiu o limite de tentativas.");
+                break;
+            } else {
+                if (usuario == usuario1 && senha == senha1) {
+                    alert("Bem vindo ao sistema " + usuario);
+                    window.location = "./monitoramento.html";
+                }
+                else {
+                    qtdTentativas = qtdTentativas - contador;
+                    alert(`Usuário ou senha incorretos. Você tem mais ${ qtdTentativas } tentativas.`);
+                }
+                contador++;
+                break;
+            }
         }
     }
 </script>

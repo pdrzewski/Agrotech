@@ -18,7 +18,7 @@
                 <a href="./calculadora.html">Simulador</a>
             </li>
             <li class="">
-                <a href="">Contatos</a>
+                <a href="#footer">Contatos</a>
             </li>
         </div>
         <div class="div_direita">
@@ -40,7 +40,7 @@
                 <h3>Cadastro</h3>
             </div>
             <div class="campo">
-                <p>Empresa / E-mail</p>
+                <p>E-mail da Empresa:</p>
                 <input type="text" id="email_input" placeholder="Ex: gerente@agro.com.br">
             </div>
             <div class="campo">
@@ -51,9 +51,9 @@
                 <p>Senha:</p>
                 <input type="text" id="senha_input" placeholder="Ex: AgroMoni@01">
             </div>
-            <button class="botao">Cadastrar</button>
+            <button class="botao" onclick="cadastro()">Cadastrar</button>
         </div>
-        <div id="footer_icons">
+        <div class="footer" id="footer">
             <div>
                 <img src="./img/Agrotech-Fundo-Azul.png" alt="logo/agrotech" id="agrotech_logo">
                 <p class="texto_footer">Empresa número 1 em tecnologia no <br> setor agropecuário</p>
@@ -91,8 +91,35 @@
                 <p>Cerqueira César, São Paulo - SP</p>
                 <p>01414-001</p>
             </div>
-
         </div>
 </body>
+
+<script>
+    function cadastro() {
+
+        var email = email_input.value;
+        var usuario = usuario_input.value;
+        var senha = senha_input.value;
+
+        while (true) {
+            if (email.includes('@gmail') || email.includes('@hotmail')) {
+                if (senha.length > 9) {
+                    if (usuario != '' && usuario.length > 4) {
+                        alert(`Cadastro concluido com sucesso ${usuario}.`);
+                        window.location = "./monitoramento.html";
+                    } else {
+                        alert(`O nome de usuário deve apresentar mais de 4 caracteres e não pode estar vazio.`);
+                    }
+                } else {
+                    alert(`A senha precisa ter a partir de 10 caracteres.`);
+                }
+            }
+            else {
+                alert(`O email precisar ter incluso nele @gmail ou @hotmail.`);
+            }
+            break;
+        }
+    }
+</script>
 
 </html>

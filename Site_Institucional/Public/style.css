@@ -9,7 +9,7 @@ body {
 
 :root {
     --tamanho-header: 80px;
-    --tamanho-footer: 90px;
+    --tamanho-footer: 300px;
     --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
 }
 
@@ -67,16 +67,16 @@ body {
     font-weight: 800;
 }
 
-/*Header*/
+/*Main*/
 
 .banner {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-image: url(./img/sojaBackground.jpg);
-    height: 600px;
+    height: 650px;
     background-size: cover;
-    gap: 15px;
+    padding-top: 10px;
 }
 
 .banner img {
@@ -85,7 +85,6 @@ body {
 }
 
 .caixa {
-    margin-top: 1%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,9 +92,10 @@ body {
     background-color: #ffffff;
     box-shadow: black 8px 8px 8px 0px;
     gap: 10px;
-    width: 20%;
+    width: 18%;
     border-radius: 10px;
     padding: 2%;
+    margin-bottom: 20px;
 }
 
 .titulo {
@@ -108,11 +108,11 @@ body {
     margin: 0;
 }
 
-.caixa:hover {
+/* .caixa:hover {
     box-shadow: black 10px 10px 10px 0px;
     padding: 3%;
     transition: 1s;
-}
+} */
 
 .campo input {
     padding: 10px;
@@ -133,7 +133,7 @@ body {
     padding: 8px;
     font-size: 25px;
     color: white;
-    margin-top: 8px;
+    margin-top: 12px;
     border-radius: 5px;
 }
 
@@ -217,7 +217,7 @@ body {
     align-items: center;
     gap: 10px;
     border-top: #015579 solid;
-    margin-top: 25px;
+    margin: 25px 0;
 }
 
 .historico h6 {
@@ -230,46 +230,44 @@ body {
     border: #015579 solid;
     height: 300px;
 }
+
 /*Footer*/
-.agrotech_redesSociais{
+.agrotech_redesSociais {
     width: 30px;
     height: 30px;
-
 }
 
-#footer_icons{
-display: flex;
-height:auto;
-width: 1475px;
-background-color: #176C91;
-justify-content: space-between;
-padding: 20px;
-margin-top: 30px;
-
-}
-
-.lado_direito{
+.footer {
     display: flex;
-    color: #ffffff;
+    height: var(--tamanho-footer);
+    width: 100%;
+    background-color: #176C91;
+    justify-content: space-around;
+    padding: 20px 0;
+    color: white;
     text-decoration: none;
-    margin: 30px;
 }
-.div_icons{
+
+.div_icons {
     display: flex;
+    height: 30px;
     gap: 20px;
-    flex-direction: row;    
+    flex-direction: row;
 }
+
 .div_icons img {
-    height: 20px;
+    height: 30px;
     width: 30px;
 }
-.texto_footer{
-    color: #ffffff;
+
+.texto_footer a {
+    display: flex;
     text-decoration: none;
+    color: #ffffff;
 }
 
-#agrotech_logo{
+#agrotech_logo {
     margin-top: 30px;
-    height: 45px;
+    height: 50px;
     width: auto;
 }
