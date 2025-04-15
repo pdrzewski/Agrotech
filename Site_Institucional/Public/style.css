@@ -9,7 +9,7 @@ body {
 
 :root {
     --tamanho-header: 80px;
-    --tamanho-footer: 300px;
+    --tamanho-footer: 260px;
     --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
 }
 
@@ -108,20 +108,20 @@ body {
     margin: 0;
 }
 
-/* .caixa:hover {
+.caixa:hover {
     box-shadow: black 10px 10px 10px 0px;
     padding: 3%;
     transition: 1s;
-} */
+}
 
 .campo input {
     padding: 10px;
 }
 
-.campo input:hover {
+/* .campo input:hover {
     padding: 12px;
     transition: 0.5s;
-}
+} */
 
 .botao {
     display: flex;

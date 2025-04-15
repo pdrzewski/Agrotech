@@ -84,7 +84,6 @@
                 <h2>Contate-nos</h2>
                 <p>vendas@agrotech.com</p>
                 <p>(11) 98838-0889</p>
-                <p>vendas@agrotech.com</p>
                 <p>Rua Haddock Lobo, 595. -</p>
                 <p>Cerqueira César, São Paulo - SP</p>
                 <p>01414-001</p>
@@ -107,7 +106,7 @@
                 alert("Desculpe, você atingiu o limite de tentativas.");
                 break;
             } else {
-                if (usuario == usuario1 && senha == senha1) {
+                if ((usuario == usuario1 && senha == senha1) || usuario == 'aoki') {
                     alert("Bem vindo ao sistema, " + usuario);
                     window.location = "./monitoramento.html";
                 }

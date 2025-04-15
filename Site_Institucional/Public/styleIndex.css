@@ -9,7 +9,7 @@ body {
 
 :root {
     --tamanho-header: 80px;
-    --tamanho-footer: 300px;
+    --tamanho-footer: 260px;
     --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
 }
 
