@@ -41,7 +41,7 @@
             </div>
             <div class="campo">
                 <p>E-mail da Empresa:</p>
-                <input type="text" id="email_input" placeholder="Ex: gerente@agro.com.br">
+                <input type="text" id="email_input" placeholder="Ex: gerente@gmail.com.br">
             </div>
             <div class="campo">
                 <p>Usuário:</p>
@@ -49,7 +49,7 @@
             </div>
             <div class="campo">
                 <p>Senha:</p>
-                <input type="text" id="senha_input" placeholder="Ex: AgroMoni@01">
+                <input type="password" id="senha_input" placeholder="Ex: AgroMoni@01">
             </div>
             <button class="botao" onclick="cadastro()">Cadastrar</button>
         </div>
@@ -102,20 +102,20 @@
         var senha = senha_input.value;
 
         while (true) {
-            if (email.includes('@gmail') || email.includes('@hotmail')) {
+            if (email.includes('@gmail.com') || email.includes('@hotmail.com')) {
                 if (senha.length > 9) {
                     if (usuario != '' && usuario.length > 4) {
-                        alert(`Cadastro concluido com sucesso ${usuario}.`);
+                        alert(`Cadastro concluido com sucesso, ${usuario}.`);
                         window.location = "./monitoramento.html";
                     } else {
-                        alert(`O nome de usuário deve apresentar mais de 4 caracteres e não pode estar vazio.`);
+                        alert(`O nome de usuário deve conter mais de 4 caracteres e não pode estar vazio.`);
                     }
                 } else {
-                    alert(`A senha precisa ter a partir de 10 caracteres.`);
+                    alert(`A senha precisa ter 10 ou mais caracteres.`);
                 }
             }
             else {
-                alert(`O email precisar ter incluso nele @gmail ou @hotmail.`);
+                alert(`O email precisa conter @gmail.com ou @hotmail.com`);
             }
             break;
         }
