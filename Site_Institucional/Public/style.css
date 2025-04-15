@@ -230,3 +230,46 @@ body {
     border: #015579 solid;
     height: 300px;
 }
+/*Footer*/
+.agrotech_redesSociais{
+    width: 30px;
+    height: 30px;
+
+}
+
+#footer_icons{
+display: flex;
+height:auto;
+width: 1475px;
+background-color: #176C91;
+justify-content: space-between;
+padding: 20px;
+margin-top: 30px;
+
+}
+
+.lado_direito{
+    display: flex;
+    color: #ffffff;
+    text-decoration: none;
+    margin: 30px;
+}
+.div_icons{
+    display: flex;
+    gap: 20px;
+    flex-direction: row;    
+}
+.div_icons img {
+    height: 20px;
+    width: 30px;
+}
+.texto_footer{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#agrotech_logo{
+    margin-top: 30px;
+    height: 45px;
+    width: auto;
+}
