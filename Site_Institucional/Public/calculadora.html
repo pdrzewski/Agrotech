@@ -47,7 +47,7 @@
 
         <div class="labelinput">
             <label for="ipt_venda">Insira o preço que irá vender a saca (Reais):</label>
-            <input type="number" id="ipt_venda" placeholder="-- R$">
+            <input type="number" id="ipt_venda" placeholder="R$ --">
         </div>
 
         <div class="labelinput">
@@ -139,26 +139,23 @@
             if ((temp > 30 || temp < 20) && (umidade > 13 || umidade < 7)) {
                 div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! ALERTA DE TEMPERATURA E UMIDADE!</h3> 
             <h3>Você perderá aproximadamente ${perda.toFixed(2)}Kg da sua safra, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}! <br>
-            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 30% de seu lucro!<h3>`
+            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudará a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 30% de seu lucro!<h3>`
 
             }
 
             else if (temp >= 20 && temp <= 30 && (umidade > 13 || umidade < 7)) {
-
                 div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! PROBLEMA DE UMIDADE!</h3> 
             <h3>Você perderá aproximadamente ${perda.toFixed(2)}Kg da sua safra por conta da umidade desrregulada, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}!
-            <p>Com essa faixa de umidade relativa dentro do silo de soja a proliferação de fungos e pragas é muito maior e mais provável.</p>
-            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 30% de seu lucro!<h3>`
+            <p>Com essa faixa de umidade relativa dentro do silo de soja, a proliferação de fungos e pragas é muito maior e mais provável.</p>
+            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudará a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 30% de seu lucro!<h3>`
 
             } else if ((temp > 30 || temp < 20) && umidade >= 7 && umidade <= 13) {
-
                 div_resultado.innerHTML = `<h3 class="vermelho">CUIDADO!!! PROBLEMA DE TEMPERATURA!</h3> 
             <h3>Você perderá aproximadamente ${perda.toFixed(2)}Kg da sua safra por conta da temperatura desrregulada, o que corresponde perder ${sacaPerdaQuant.toFixed(2)} sacas de soja e R$${perdaFinanceira.toFixed(2)}! 
-            <p>Com essa faixa de temperatura, sua safra está mais suscetível á perder sua qualidade e/ou ter problemas com pragas.</p>
-            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudara a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 30% de seu lucro!<h3>`
+            <p>Com essa faixa de temperatura, sua safra está mais suscetível a perder sua qualidade e/ou ter problemas com pragas.</p>
+            <h3 class="verde">Não tema!!! O projeto do Grupo Agrotech te ajudará a ter um melhor monitoramento de sua safra, assim, deixando de perder cerca de 30% de seu lucro!<h3>`
 
             } else {
-
                 div_resultado.innerHTML = `<h3 class="verde">Tudo certo por aqui!</h3> 
                 <h3>Seus ${quant} kg de soja estão sob controle. </h3>
                 <h3>Não corra o risco de perder ${sacaPerdaQuant} sacas e R$${perdaFinanceira.toFixed(2)}. </h3>

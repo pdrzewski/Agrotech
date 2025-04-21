@@ -96,27 +96,25 @@
     let usuario1 = 'gerente@agrotech.com.br';
     let senha1 = 'AgroMoni@01';
     var qtdTentativas = 2;
-    var contador = 0;
+    var contador = 1;
     function login() {
         var usuario = usuario_input.value;
         var senha = senha_input.value;
 
-        while (contador <= 3) {
-            if (contador == 2) {
-                alert("Desculpe, você atingiu o limite de tentativas.");
-                break;
-            } else {
-                if ((usuario == usuario1 && senha == senha1) || usuario == 'aoki') {
-                    alert("Bem vindo ao sistema, " + usuario);
-                    window.location = "./monitoramento.html";
-                }
-                else {
-                    qtdTentativas = qtdTentativas - contador;
-                    alert(`Usuário ou senha incorretos. Você tem mais ${qtdTentativas } tentativa(s).`);
-                }
-                contador++;
-                break;
+        while (contador <= 4) {
+            if (((usuario == usuario1 && senha == senha1) || usuario == 'aoki') && qtdTentativas >= 0) {
+                alert("Bem vindo ao sistema, " + usuario + ".");
+                window.location = "./monitoramento.html";
             }
+            else if (qtdTentativas <= 0){
+                alert("Desculpe, você atingiu o limite de tentativas.");
+            }
+            else {
+                alert(`Usuário ou senha incorretos. Você tem mais ${qtdTentativas} tentativa(s).`);
+                contador++;
+            }
+            qtdTentativas--;
+            break;
         }
     }
 </script>
