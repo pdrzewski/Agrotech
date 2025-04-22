@@ -40,32 +40,27 @@
                         <h6>Monitoramento em tempo real</h6>
                     </div>
                     <div>
-                        <select name="Silo" id="sel_silo">
+                        <select onchange="grafico(this)" name="Silo" id="sel_silo">
                             <option value="silo1">Silo 1</option>
                             <option value="silo2">Silo 2</option>
                             <option value="silo3">Silo 3</option>
                         </select>
                     </div>
-                    <div class="alerta">
+                    <div class="alerta" id="alerta">
                         <p>⚠️ Quantidade de alertas: 1 ⚠️</p>
                         <p id="verificar_alerta">Verificar silo: 1</p>
                     </div>
-                    <div class="alerta_temp_umid">Umidade acima do esperado!</div>
-                    <div class="grafico">
-                        <div>
-                            <canvas id="grafico_temperatura"></canvas>
-                        </div>
-                        <div>
-                            <canvas id="grafico_umidade"></canvas>
-                        </div>
+                    <div class="alerta_temp_umid" id="alerta_temp_umid">Umidade acima do esperado!</div>
+                    <div id="div_grafico">
+                        <img src="./img/Grafico-Silo1.png" alt="">
                     </div>
                 </div>
                 <div class="historico" id="historico">
                     <div>
                         <h6>Histórico dos dados</h6>
                     </div>
-                    <div>
-                        <img class="img_dados_teste" src="./img/Dados_teste.png" alt="">
+                    <div id="div_historico">
+                        <img class="img_dados_teste" src="./img/Historico_Silo1.png" alt="">
                     </div>
                 </div>
             </div>
@@ -115,83 +110,106 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    const temperatura = document.getElementById('grafico_temperatura');
+    function grafico(option){
+        var sel_silo = option.value;
+        if (sel_silo == 'silo1'){
+            alerta.innerHTML = `<p>⚠️ Quantidade de alertas: 1 ⚠️</p>
+                        <p id="verificar_alerta">Verificar silo: 1</p>`
+            alerta_temp_umid.innerHTML = `Umidade acima do esperado!`;
+            div_grafico.innerHTML = `<img src="./img/Grafico-Silo1.png" alt="">`;
+            div_historico.innerHTML = `<img class="img_dados_teste" src="./img/Historico_Silo1.png" alt="">`;
+        } else if (sel_silo == 'silo2'){
+            alerta.innerHTML = `<p>⚠️ Quantidade de alertas: 1 ⚠️</p>
+                        <p id="verificar_alerta">Verificar silo: 1</p>`
+            alerta_temp_umid.innerHTML = `Sem alertas!`;
+            div_grafico.innerHTML = `<img src="./img/Grafico-Silo2.png" alt="">`;
+            div_historico.innerHTML = `<img class="img_dados_teste" src="./img/Historico_Silo2.png" alt="">`;
+        } else if (sel_silo == 'silo3'){
+            alerta.innerHTML = `<p>⚠️ Quantidade de alertas: 1 ⚠️</p>
+                        <p id="verificar_alerta">Verificar silo: 1</p>`
+            alerta_temp_umid.innerHTML = `Sem alertas!`;
+            div_grafico.innerHTML = `<img src="./img/Grafico-Silo3.png" alt="">`;
+            div_historico.innerHTML = `<img class="img_dados_teste" src="./img/Historico_Silo3.png" alt="">`;
+        }
+    }
     
-    new Chart(temperatura, {
-        type: 'line',
-        data: {
-            labels: ['18:30:00', '18:30:01', '18:30:02', '18:30:03', '18:30:04', '18:30:05', '18:30:06', '18:30:07', '18:30:08', '18:30:09'],
-            datasets: [{
-                label: 'Temperatura média',
-                data: [24.4, 24.4, 24.5, 24.6, 24.5, 24.4, 24.6, 24.8, 25, 25.5],
-                backgroundColor: '#3cff66',
-                borderColor: '#3cff66',
-            },
-            {
-                label: 'Temperatura_máxima',
-                data: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
-                backgroundColor: '#f12c2c',
-                borderColor: '#f12c2c',
-            },
-            {
-                label: 'Temperatura_mínima',
-                data: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
-                backgroundColor: '#1c55f1',
-                borderColor: '#1c55f1',
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    min: 18,
-                    max: 31,
-                    title: {
-                        display: true,
-                        text: '(°C)'
-                    },
-                }
-            }
-        }
-    });
+    // const temperatura = document.getElementById('grafico_temperatura');
+    
+    // new Chart(temperatura, {
+    //     type: 'line',
+    //     data: {
+    //         labels: ['15:12:00', '15:12:01', '15:12:02', '15:12:03', '15:12:04', '15:12:05', '15:12:06', '15:12:07', '15:12:08', '15:12:09'],
+    //         datasets: [{
+    //             label: 'Temperatura média',
+    //             data: [22.4, 22.5, 22.8, 22.2, 22.4, 22.1, 22.0, 22.8, 22, 22.5],
+    //             backgroundColor: '#3cff66',
+    //             borderColor: '#3cff66',
+    //         },
+    //         {
+    //             label: 'Temperatura_máxima',
+    //             data: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+    //             backgroundColor: '#f12c2c',
+    //             borderColor: '#f12c2c',
+    //         },
+    //         {
+    //             label: 'Temperatura_mínima',
+    //             data: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
+    //             backgroundColor: '#1c55f1',
+    //             borderColor: '#1c55f1',
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 min: 18,
+    //                 max: 31,
+    //                 title: {
+    //                     display: true,
+    //                     text: '(°C)'
+    //                 },
+    //             }
+    //         }
+    //     }
+    // });
 
-    const umidade = document.getElementById('grafico_umidade');
+    // const umidade = document.getElementById('grafico_umidade');
 
-    new Chart(umidade, {
-        type: 'line',
-        data: {
-            labels: ['18:30:00', '18:30:01', '18:30:02', '18:30:03', '18:30:04', '18:30:05', '18:30:06', '18:30:07', '18:30:08', '18:30:09'],
-            datasets: [{
-                label: 'Umidade média',
-                data: [14, 14, 13, 13, 14, 13, 12, 13, 14, 15],
-                backgroundColor: '#3cff66',
-                borderColor: '#3cff66',
-            },
-            {
-                label: 'Umidade_máxima',
-                data: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14],
-                backgroundColor: '#f12c2c',
-                borderColor: '#f12c2c',
-            },
-            {
-                label: 'Umidade_mínima',
-                data: [12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
-                backgroundColor: '#1c55f1',
-                borderColor: '#1c55f1',
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    min: 10,
-                    max: 16,
-                    title: {
-                        display: true,
-                        text: '(%)'
-                    },
-                }
-            }
-        }
-    });
+    // new Chart(umidade, {
+    //     type: 'line',
+    //     data: {
+    //         labels: ['15:12:00', '15:12:01', '15:12:02', '15:12:03', '15:12:04', '15:12:05', '15:12:06', '15:12:07', '15:12:08', '15:12:09'],
+    //         datasets: [{
+    //             label: 'Umidade média',
+    //             data: [12, 12, 12, 13, 13, 14, 14, 13, 13, 13],
+    //             backgroundColor: '#3cff66',
+    //             borderColor: '#3cff66',
+    //         },
+    //         {
+    //             label: 'Umidade_máxima',
+    //             data: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14],
+    //             backgroundColor: '#f12c2c',
+    //             borderColor: '#f12c2c',
+    //         },
+    //         {
+    //             label: 'Umidade_mínima',
+    //             data: [12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+    //             backgroundColor: '#1c55f1',
+    //             borderColor: '#1c55f1',
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 min: 10,
+    //                 max: 16,
+    //                 title: {
+    //                     display: true,
+    //                     text: '(%)'
+    //                 },
+    //             }
+    //         }
+    //     }
+    // });
 </script>
 
 </html>

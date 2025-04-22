@@ -199,18 +199,29 @@ body {
     text-decoration: underline;
 }
 
-.grafico {
+/* .grafico {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     border: #015579 solid;
     padding: 15px;
+    height: 500px;
+    width: 90%;
+} */
+
+#div_grafico {
+    display: flex;
+    justify-content: center;
+    border: #015579 solid;
+    padding: 15px;
+}
+
+#div_grafico img {
     width: 90%;
 }
 
 #sel_silo {
     height: 30px;
-    width: 70px;
     text-align: center;
     border-radius: 5px;
     background-color: #d3d1d1;
