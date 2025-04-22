@@ -1,5 +1,4 @@
 create database agrotech;
-
 use agrotech;
 
 create table Empresa (
@@ -19,6 +18,7 @@ create table Usuario (
 create table Silo (
     id int primary key auto_increment,
     setor varchar(20),
+    localidade varchar(100),
     fkEmpresa int,
     foreign key (fkEmpresa) references Empresa(id));
     
@@ -47,13 +47,13 @@ INSERT INTO Usuario (login, senha, fkEmpresa) VALUES
 ('gerente', 'secure789', 2),
 ('operador', 'op123', 3);
 
-INSERT INTO Silo (setor, fkEmpresa) VALUES
-('Silo A', 1),
-('Silo B', 1),
-('Silo Principal', 2),
-('Silo Secundário', 2),
-('Unidade 1', 3),
-('Unidade 2', 3);
+INSERT INTO Silo (setor, localidade, fkEmpresa) VALUES
+('Silo A','Primeiro silo ao norte, próximo ao armazém central', 1),
+('Silo B','Ao lado do Silo 1, a leste da entrada principal', 1),
+('Silo Principal', 'Terceiro silo ao sul, próximo à área de carregamento', 2),
+('Silo Secundário', 'Silo central, entre Silo 3 e Silo 5', 2),
+('Unidade 1', 'Último silo a oeste, próximo à cerca perimetral', 3),
+('Unidade 2', 'Último silo a oeste, próximo à cerca perimetral', 3);
 
 INSERT INTO Sensor (tipo, fkSilo) VALUES
 ('DHT11', 1),
