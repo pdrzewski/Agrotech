@@ -10,7 +10,7 @@ main {
     display: flex;  /* organização de blocos */
     justify-content: center; /* centraliza verticalmente*/
     align-items: center; /* centraliza horizontalmente*/
-    padding: 50px;
+    padding: 35px;
     flex-direction: column; /* coloca os blocos em colunas */
     background-color: #081c3b;
     gap: 10px; /* espaçamento entre as colunas */
@@ -41,7 +41,7 @@ input {
 
 button {
     background-color: #41b128;
-    padding: 15px;
+    padding: 12px;
     font-size: 15px;
     border-radius: 0.2rem;
     /* arredonda as pontas do input */
@@ -52,7 +52,7 @@ button {
 
 button:hover { /* :hover. Quando colocar o mouse em cima*/
     background-color: #106635;
-    font-size: 20px;
+    font-size: 18px;
     padding: 15px;
     transition: 1s;
 }

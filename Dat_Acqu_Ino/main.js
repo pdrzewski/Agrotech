@@ -51,7 +51,7 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
         const valores = data.split(';');
-        const Temperatura = parseFloat(valores[0]) + 22;    //Ajustando o valor de Temperatura
+        const Temperatura = parseFloat(valores[0]) + 12;    //Ajustando o valor de Temperatura
         const Umidade = parseInt(valores[1]) + 12;  //Ajustando o valor da Umidade
 
         // armazena os valores dos sensores nos arrays correspondentes
@@ -63,7 +63,7 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO dados (Temperatura, Umidade, fkSensor) VALUES (?, ?, 1)',
+                'INSERT INTO Dados (Temperatura, Umidade, fkSensor) VALUES (?, ?, 1)',
                 [Temperatura, Umidade]
             );
             console.log("valores inseridos no banco: ", Temperatura + ", " + Umidade);

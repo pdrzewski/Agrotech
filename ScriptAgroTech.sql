@@ -1,4 +1,5 @@
 create database agrotech;
+
 use agrotech;
 
 create table empresa (
