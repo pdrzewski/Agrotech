@@ -29,7 +29,7 @@ create table sensor (
     fkSilo int,
     foreign key (fkSilo) references silo(id));
     
-create table leitura_dados(
+create table dados(
     id int primary key auto_increment,
     data_dado datetime default current_timestamp,
     temperatura decimal(4,2),
@@ -64,7 +64,7 @@ INSERT INTO sensor (tipo, fkSilo) VALUES
 ('DHT11', 5),
 ('DHT11', 6);
 
-INSERT INTO leitura_dados (data_dado, temperatura, umidade, fkSensor) VALUES
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
 ('2025-04-15 10:00:00', 25.5, 60.2, 1),
 ('2025-04-15 10:15:00', 26.1, 61.5, 1),
 ('2025-04-15 10:30:00', 24.9, 59.8, 2),
@@ -82,4 +82,4 @@ SELECT * FROM empresa;
 SELECT * FROM usuario;
 SELECT * FROM silo;
 SELECT * FROM sensor;
-SELECT * FROM leitura_dados;
+SELECT * FROM dados;
