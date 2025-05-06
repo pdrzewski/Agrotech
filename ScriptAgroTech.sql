@@ -19,14 +19,15 @@ create table usuario (
 create table silo (
     id int primary key auto_increment,
     setor varchar(20),
-    localidade varchar(100),
     fkEmpresa int,
     foreign key (fkEmpresa) references empresa(id));
     
 create table sensor (
     id int primary key auto_increment,
     tipo varchar(20),
+    posicao varchar(20),
     fkSilo int,
+    constraint nomePosicao check (posicao in('superior','meio','inferior')),
     foreign key (fkSilo) references silo(id));
     
 create table dados(
@@ -48,21 +49,21 @@ INSERT INTO usuario (login, senha, fkEmpresa) VALUES
 ('gerente', 'secure789', 2),
 ('operador', 'op123', 3);
 
-INSERT INTO silo (setor, localidade, fkEmpresa) VALUES
-('Silo A','Primeiro silo ao norte, próximo ao armazém central', 1),
-('Silo B','Ao lado do Silo 1, a leste da entrada principal', 1),
-('Silo Principal', 'Terceiro silo ao sul, próximo à área de carregamento', 2),
-('Silo Secundário', 'Silo central, entre Silo 3 e Silo 5', 2),
-('Unidade 1', 'Último silo a oeste, próximo à cerca perimetral', 3),
-('Unidade 2', 'Último silo a oeste, próximo à cerca perimetral', 3);
+INSERT INTO silo (setor, fkEmpresa) VALUES
+('A', 1),
+('B', 1),
+('A', 2),
+('B', 2),
+('C', 3),
+('D', 3);
 
-INSERT INTO sensor (tipo, fkSilo) VALUES
-('DHT11', 1),
-('DHT11', 2),
-('DHT11', 3),
-('DHT11', 4),
-('DHT11', 5),
-('DHT11', 6);
+INSERT INTO sensor (tipo, posicao, fkSilo) VALUES
+('DHT11', 'meio', 1),
+('DHT11', 'inferior', 2),
+('DHT11', 'meio', 3),
+('DHT11', 'superior', 4),
+('DHT11', 'superior', 5),
+('DHT11', 'inferior', 6);
 
 INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
 ('2025-04-15 10:00:00', 25.5, 60.2, 1),
@@ -83,3 +84,5 @@ SELECT * FROM usuario;
 SELECT * FROM silo;
 SELECT * FROM sensor;
 SELECT * FROM dados;
+
+select emp.nome as Empresa, sen.posicao, sil.setor from empresa as emp inner join silo as sil on sil.fkEmpresa = emp.id inner join sensor as sen on sen.fkSilo = sil.id;
