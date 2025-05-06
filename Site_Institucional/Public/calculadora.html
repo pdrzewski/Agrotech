@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Financeira Agrotech </title>
-    <link rel="stylesheet" href="styleCalculadora.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -36,34 +35,36 @@
     </div>
 
     <main>
-        <h1>Agrotech: Calculadora financeira.</h1>
-        <h2>Simule o quanto vai ganhar ou perder com sua safra de soja!</h2>
-        <br>
+        <div class="calculadora">
+            <h1>Agrotech: Calculadora financeira.</h1>
+            <h2>Simule o quanto vai ganhar ou perder com sua safra de soja!</h2>
+            <br>
 
-        <div class="labelinput">
-            <label for="ipt_quantidade">Insira a quantidade de soja de sua safra (Kg):</label>
-            <input type="number" id="ipt_quantidade" placeholder="-- Kg">
+            <div class="labelinput">
+                <label for="ipt_quantidade">Insira a quantidade de soja de sua safra (Kg):</label>
+                <input type="number" id="ipt_quantidade" placeholder="-- Kg">
+            </div>
+
+            <div class="labelinput">
+                <label for="ipt_venda">Insira o preço que irá vender a saca (Reais):</label>
+                <input type="number" id="ipt_venda" placeholder="R$ --">
+            </div>
+
+            <div class="labelinput">
+                <label for="ipt_temperatura">Insira a temperatura média do silo que armazena a sua safra de soja
+                    (°C):</label>
+                <input type="number" id="ipt_temperatura" placeholder="-- °C">
+            </div>
+
+            <div class="labelinput">
+                <label for="ipt_umidade">Insira a umidade relativa do silo que armazena a sua safra de soja (%):</label>
+                <input type="number" id="ipt_umidade" placeholder="-- %">
+            </div>
+
+            <div id="div_resultado"></div>
+
+            <button class="btn_calcular" onclick="calcular()">Calcular</button>
         </div>
-
-        <div class="labelinput">
-            <label for="ipt_venda">Insira o preço que irá vender a saca (Reais):</label>
-            <input type="number" id="ipt_venda" placeholder="R$ --">
-        </div>
-
-        <div class="labelinput">
-            <label for="ipt_temperatura">Insira a temperatura média do silo que armazena a sua safra de soja
-                (°C):</label>
-            <input type="number" id="ipt_temperatura" placeholder="-- °C">
-        </div>
-
-        <div class="labelinput">
-            <label for="ipt_umidade">Insira a umidade relativa do silo que armazena a sua safra de soja (%):</label>
-            <input type="number" id="ipt_umidade" placeholder="-- %">
-        </div>
-
-        <div id="div_resultado"></div>
-
-        <button onclick="calcular()">Calcular</button>
 
     </main>
 

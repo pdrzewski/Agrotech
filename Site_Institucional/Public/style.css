@@ -67,7 +67,7 @@ body {
     font-weight: 800;
 }
 
-/*Main*/
+/* CADASTRO E LOGIN */
 
 .banner {
     display: flex;
@@ -118,11 +118,6 @@ body {
     padding: 10px;
 }
 
-/* .campo input:hover {
-    padding: 12px;
-    transition: 0.5s;
-} */
-
 .botao {
     display: flex;
     align-items: center;
@@ -145,7 +140,7 @@ body {
     cursor: pointer;
 }
 
-/* Monitoramento */
+/* MONITORAMENTO */
 
 .navbar .img_fundo_azul {
     height: calc(var(--tamanho-header) * 0.8);
@@ -171,6 +166,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
     gap: 10px;
 }
 
@@ -249,6 +245,160 @@ body {
     height: 300px;
 }
 
+
+/* SITE */
+
+.container .boxes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 30px 0;
+}
+
+main .container .boxes h6 {
+    color: #176C91;
+    font-size: 30px;
+}
+
+main .container .boxes p {
+    font-size: 25px;
+}
+
+main .container .boxes .img_logo {
+    width: 300px;
+}
+
+h6 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.box1 {
+    display: flex;
+    justify-content: flex-start;
+    gap: 100px;
+    margin-top: 50px;
+}
+
+.box1 .texto {
+    justify-content: flex-start;
+    text-align: justify;
+}
+
+.box1 img {
+    border: #176C91 solid 4px;
+    width: 700px;
+    align-self: center;
+    height: fit-content;
+}
+
+.box2 {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    gap: 100px;
+    margin-top: 50px;
+}
+
+.box2 .texto {
+    justify-content: flex-start;
+    text-align: justify;
+}
+
+.box2 img {
+    border: #176C91 solid 4px;
+    width: 770px;
+    align-self: center;
+    height: fit-content;
+}
+
+.box3 {
+    display: flex;
+    justify-content: flex-start;
+    gap: 100px;
+    margin-top: 50px;
+}
+
+.box3 .texto {
+    justify-content: flex-start;
+    text-align: justify;
+}
+
+.box3 img {
+    border: #176C91 solid 4px;
+    width: 600px;
+    align-self: center;
+    height: 450px;
+}
+
+.ModeloDeNegócio {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.ModeloDeNegócio img {
+    width: 70%;
+    border: #176C91 solid 4px;
+}
+
+
+/* CALCULADORA */
+
+.calculadora {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(8, 28, 59);
+    color: white;
+    gap: 10px;
+    padding: 35px;
+}
+
+.calculadora h1, h2 {
+    margin: 0;
+}
+
+.calculadora input {
+    padding: 4px;
+    border-radius: 0.2rem;
+    border: none;
+    font-size: 1rem;
+}
+
+.calculadora #div_resultado {
+    margin: 10px 100px;
+    text-align: center;
+}
+
+.calculadora #div_resultado h3 {
+    font-size: 14pt;
+}
+
+.calculadora .vermelho {
+    color: rgb(204, 27, 27);
+}
+
+.calculadora .verde {
+    color: rgb(51, 219, 51);
+}
+
+.calculadora button {
+    background-color: #41b128;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 0.2rem;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.calculadora button:hover {
+    background-color: #106635;
+    font-size: 18px;
+    padding: 15px;
+    transition: 1s;
+}
+
 /*Footer*/
 .agrotech_redesSociais {
     width: 30px;
@@ -282,6 +432,10 @@ body {
     display: flex;
     text-decoration: none;
     color: #ffffff;
+}
+
+.footer h2 {
+    margin: 20px 0px;
 }
 
 #agrotech_logo {
