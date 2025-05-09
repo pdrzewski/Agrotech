@@ -55,6 +55,61 @@
                         <img src="./img/Grafico-Silo1.png" alt="">
                     </div>
                 </div>
+                <!-- Carrossel -->
+  <div class="carousel">
+    <div class="carousel-inner">
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="grid-silos">
+          <div class="silo">Silo 1: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 2: <span class="status-instavel">Instável</span></div>
+          <div class="silo">Silo 3: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 4: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 5: <span class="status-instavel">Instável</span></div>
+          <div class="silo">Silo 6: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 7: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 8: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 9: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 10: <span class="status-instavel">Instável</span></div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="grid-silos">
+          <div class="silo">Silo 11: <span class="status-instavel">Instável</span></div>
+          <div class="silo">Silo 12: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 13: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 14: <span class="status-instavel">Instável</span></div>
+          <div class="silo">Silo 15: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 16: <span class="status-instavel">Instável</span></div>
+          <div class="silo">Silo 17: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 18: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 19: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 20: <span class="status-instavel">Instável</span></div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="grid-silos">
+          <div class="silo">Silo 21: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 22: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 23: <span class="status-instavel">Instável</span></div>
+          <div class="silo">Silo 24: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 25: <span class="status-instavel">Instável</span></div>
+          <div class="silo">Silo 26: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 27: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 28: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 29: <span class="status-estavel">Estável</span></div>
+          <div class="silo">Silo 30: <span class="status-instavel">Instável</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- div do conteúdo extra ( Dashboards ) -->
+  <div id="conteudo-container" class="conteudo-extra-container"></div>
                 <div class="historico" id="historico">
                     <div>
                         <h6>Histórico dos dados</h6>
@@ -132,6 +187,65 @@
             div_historico.innerHTML = `<img class="img_dados_teste" src="./img/Historico_Silo3.png" alt="">`;
         }
     }
+
+    const carouselInner = document.querySelector('.carousel-inner');
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const conteudoContainer = document.getElementById('conteudo-container');
+    const carousel = document.querySelector('.carousel');
+    let currentIndex = 0;
+    let intervalId;
+
+    function goToSlide(index) {
+      if (index < 0) index = carouselItems.length - 1;
+      else if (index >= carouselItems.length) index = 0;
+      carouselInner.style.transform = `translateX(-${index * 99.5}%)`;
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function startCarousel() {
+      intervalId = setInterval(nextSlide, 7000);
+    }
+
+    function stopCarousel() {
+      clearInterval(intervalId);
+    }
+
+    startCarousel();
+
+  
+    carousel.addEventListener('mouseenter', stopCarousel);
+    carousel.addEventListener('mouseleave', startCarousel);
+
+    const conteudoPorSilo = {};
+    for (let i = 1; i <= 30; i++) {
+      conteudoPorSilo[`Silo ${i}`] = `Colocar as Dashboars do silo ${i} aqui!.`;
+    }
+
+    function alterarVisibilidade(event) {
+      const silo = event.currentTarget;
+      const nome = silo.textContent.split(':')[0].trim();
+
+      if (conteudoContainer.dataset.current === nome) {
+        conteudoContainer.innerHTML = '';
+        conteudoContainer.removeAttribute('data-current');
+      } else {
+        conteudoContainer.dataset.current = nome;
+        conteudoContainer.innerHTML = `
+          <div class="conteudo-extra">
+            <strong>${nome}</strong><br />
+            ${conteudoPorSilo[nome] || 'Sem conteúdo.'}
+          </div>
+        `;
+      }
+    }
+
+    document.querySelectorAll('.silo').forEach(silo => {
+      silo.addEventListener('click', alterarVisibilidade);
+    });
     
     // const temperatura = document.getElementById('grafico_temperatura');
     
