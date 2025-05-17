@@ -39,23 +39,16 @@
                     <div>
                         <h6>Monitoramento em tempo real</h6>
                     </div>
-                    <div>
-                        <select onchange="grafico(this)" name="Silo" id="sel_silo">
-                            <option value="silo1">Silo 1</option>
-                            <option value="silo2">Silo 2</option>
-                            <option value="silo3">Silo 3</option>
-                        </select>
-                    </div>
+
                     <div class="alerta" id="alerta">
-                        <p>⚠️ Quantidade de alertas: 1 ⚠️</p>
-                        <p id="verificar_alerta">Verificar silo: 1</p>
+                        <p>⚠️ Quantidade de silos instáveis: 1 ⚠️</p>
+
                     </div>
                     <div class="alerta_temp_umid" id="alerta_temp_umid">Umidade acima do esperado!</div>
-                    <div id="div_grafico">
-                        <img src="./img/Grafico-Silo1.png" alt="">
-                    </div>
+                   
                 </div>
                 <!-- Carrossel -->
+                 <div class="carousel-extra">
   <div class="carousel">
     <div class="carousel-inner">
       <!-- Slide 1 -->
@@ -110,6 +103,7 @@
 
   <!-- div do conteúdo extra ( Dashboards ) -->
   <div id="conteudo-container" class="conteudo-extra-container"></div>
+</div>
                 <div class="historico" id="historico">
                     <div>
                         <h6>Histórico dos dados</h6>
@@ -158,14 +152,16 @@
             <p>Rua Haddock Lobo, 595. -</p>
             <p>Cerqueira César, São Paulo - SP</p>
             <p>01414-001</p>
+
         </div>
     </div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
 <script>
-    function grafico(option){
+  function grafico(option){
         var sel_silo = option.value;
         if (sel_silo == 'silo1'){
             alerta.innerHTML = `<p>⚠️ Quantidade de alertas: 1 ⚠️</p>
@@ -196,134 +192,195 @@
     let intervalId;
 
     function goToSlide(index) {
-      if (index < 0) index = carouselItems.length - 1;
-      else if (index >= carouselItems.length) index = 0;
-      carouselInner.style.transform = `translateX(-${index * 99.5}%)`;
-      currentIndex = index;
+        if (index < 0) index = carouselItems.length - 1;
+        else if (index >= carouselItems.length) index = 0;
+        carouselInner.style.transform = `translateX(-${index * 97.5}%)`;
+        currentIndex = index;
     }
 
     function nextSlide() {
-      goToSlide(currentIndex + 1);
+        goToSlide(currentIndex + 1);
     }
 
     function startCarousel() {
-      intervalId = setInterval(nextSlide, 7000);
+        intervalId = setInterval(nextSlide, 7000);
     }
 
     function stopCarousel() {
-      clearInterval(intervalId);
+        clearInterval(intervalId);
     }
 
     startCarousel();
 
-  
     carousel.addEventListener('mouseenter', stopCarousel);
     carousel.addEventListener('mouseleave', startCarousel);
 
-    const conteudoPorSilo = {};
-    for (let i = 1; i <= 30; i++) {
-      conteudoPorSilo[`Silo ${i}`] = `Colocar as Dashboars do silo ${i} aqui!.`;
-    }
-
     function alterarVisibilidade(event) {
-      const silo = event.currentTarget;
-      const nome = silo.textContent.split(':')[0].trim();
+        const silo = event.currentTarget;
+        const nome = silo.textContent.split(':')[0].trim();
 
-      if (conteudoContainer.dataset.current === nome) {
-        conteudoContainer.innerHTML = '';
-        conteudoContainer.removeAttribute('data-current');
-      } else {
-        conteudoContainer.dataset.current = nome;
-        conteudoContainer.innerHTML = `
-          <div class="conteudo-extra">
-            <strong>${nome}</strong><br />
-            ${conteudoPorSilo[nome] || 'Sem conteúdo.'}
-          </div>
-        `;
-      }
+        if (conteudoContainer.dataset.current === nome) {
+            conteudoContainer.innerHTML = '';
+            conteudoContainer.removeAttribute('data-current');
+        } else {
+            conteudoContainer.dataset.current = nome;
+    conteudoContainer.innerHTML = `
+    <div class="conteudo-extra">
+        <div class="silo-nome">${nome}</div>
+        
+        <!-- Linha Superior: 3 Gráficos de Temperatura -->
+        <div class="linha-graficos">
+            <div class="grafico-box">
+                <h4>Temperatura - Sensor 1 (topo)</h4>
+                <canvas id="grafico_temperatura_1"></canvas>
+            </div>
+            <div class="grafico-box">
+                <h4>Temperatura - Sensor 2 (meio)</h4>
+                <canvas id="grafico_temperatura_2"></canvas>
+            </div>
+            <div class="grafico-box">
+                <h4>Temperatura - Sensor 3 (base)</h4>
+                <canvas id="grafico_temperatura_3"></canvas>
+            </div>
+        </div>
+
+        <!-- Linha Inferior: 3 Gráficos de Umidade -->
+        <div class="linha-graficos">
+            <div class="grafico-box">
+                <h4>Umidade - Sensor 1 (topo)</h4>
+                <canvas id="grafico_umidade_1"></canvas>
+            </div>
+            <div class="grafico-box">
+                <h4>Umidade - Sensor 2 (meio)</h4>
+                <canvas id="grafico_umidade_2"></canvas>
+            </div>
+            <div class="grafico-box">
+                <h4>Umidade - Sensor 3 (base)</h4>
+                <canvas id="grafico_umidade_3"></canvas>
+            </div>
+        </div>
+    </div>
+`;
+            
+            criarGraficos();
+        }
     }
 
     document.querySelectorAll('.silo').forEach(silo => {
-      silo.addEventListener('click', alterarVisibilidade);
+        silo.addEventListener('click', alterarVisibilidade);
     });
-    
-    // const temperatura = document.getElementById('grafico_temperatura');
-    
-    // new Chart(temperatura, {
-    //     type: 'line',
-    //     data: {
-    //         labels: ['15:12:00', '15:12:01', '15:12:02', '15:12:03', '15:12:04', '15:12:05', '15:12:06', '15:12:07', '15:12:08', '15:12:09'],
-    //         datasets: [{
-    //             label: 'Temperatura média',
-    //             data: [22.4, 22.5, 22.8, 22.2, 22.4, 22.1, 22.0, 22.8, 22, 22.5],
-    //             backgroundColor: '#3cff66',
-    //             borderColor: '#3cff66',
-    //         },
-    //         {
-    //             label: 'Temperatura_máxima',
-    //             data: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
-    //             backgroundColor: '#f12c2c',
-    //             borderColor: '#f12c2c',
-    //         },
-    //         {
-    //             label: 'Temperatura_mínima',
-    //             data: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
-    //             backgroundColor: '#1c55f1',
-    //             borderColor: '#1c55f1',
-    //         }]
-    //     },
-    //     options: {
-    //         scales: {
-    //             y: {
-    //                 min: 18,
-    //                 max: 31,
-    //                 title: {
-    //                     display: true,
-    //                     text: '(°C)'
-    //                 },
-    //             }
-    //         }
-    //     }
-    // });
 
-    // const umidade = document.getElementById('grafico_umidade');
+    function criarGraficos() {
+        for (let i = 1; i <= 3; i++) {
+             const temperatura = document.getElementById(`grafico_temperatura_${i}`);
+     const umidade = document.getElementById(`grafico_umidade_${i}`);
 
-    // new Chart(umidade, {
-    //     type: 'line',
-    //     data: {
-    //         labels: ['15:12:00', '15:12:01', '15:12:02', '15:12:03', '15:12:04', '15:12:05', '15:12:06', '15:12:07', '15:12:08', '15:12:09'],
-    //         datasets: [{
-    //             label: 'Umidade média',
-    //             data: [12, 12, 12, 13, 13, 14, 14, 13, 13, 13],
-    //             backgroundColor: '#3cff66',
-    //             borderColor: '#3cff66',
-    //         },
-    //         {
-    //             label: 'Umidade_máxima',
-    //             data: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14],
-    //             backgroundColor: '#f12c2c',
-    //             borderColor: '#f12c2c',
-    //         },
-    //         {
-    //             label: 'Umidade_mínima',
-    //             data: [12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
-    //             backgroundColor: '#1c55f1',
-    //             borderColor: '#1c55f1',
-    //         }]
-    //     },
-    //     options: {
-    //         scales: {
-    //             y: {
-    //                 min: 10,
-    //                 max: 16,
-    //                 title: {
-    //                     display: true,
-    //                     text: '(%)'
-    //                 },
-    //             }
-    //         }
-    //     }
-    // });
+   
+    temperatura.style.width = '100%';
+    temperatura.style.height = '200px';
+    umidade.style.width = '100%';
+    umidade.style.height = '200px';
+
+      new Chart(temperatura, {
+    type: 'line',
+    data: {
+        labels: ['15:12:00', '15:12:01', '15:12:02', '15:12:03', '15:12:04', '15:12:05', '15:12:06', '15:12:07', '15:12:08', '15:12:09'],
+        datasets: [
+            {
+                label: 'Temperatura média',
+                data: [22.4, 22.5, 22.8, 22.2, 22.4, 22.1, 22.0, 22.8, 22, 22.5],
+                backgroundColor: '#3cff66',
+                borderColor: '#3cff66',
+            },
+            {
+                label: 'Temperatura máxima',
+                data: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+                backgroundColor: '#f12c2c',
+                borderColor: '#f12c2c',
+            },
+            {
+                label: 'Temperatura mínima',
+                data: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
+                backgroundColor: '#1c55f1',
+                borderColor: '#1c55f1',
+            }
+        ]
+    },
+    options: {
+        scales: {
+            y: {
+                min: 18,
+                max: 31,
+                title: {
+                    display: true,
+                    text: '(°C)'
+                },
+            }
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    boxWidth: 22,
+                    padding: 20
+                }
+            }
+        }
+    }
+});
+    
+
+     new Chart(umidade, {
+    type: 'line',
+    data: {
+        labels: ['15:12:00', '15:12:01', '15:12:02', '15:12:03', '15:12:04', '15:12:05', '15:12:06', '15:12:07', '15:12:08', '15:12:09'],
+        datasets: [
+            {
+                label: 'Umidade média',
+                data: [12, 12, 12, 13, 13, 14, 14, 13, 13, 13],
+                backgroundColor: '#3cff66',
+                borderColor: '#3cff66',
+            },
+            {
+                label: 'Umidade máxima',
+                data: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14],
+                backgroundColor: '#f12c2c',
+                borderColor: '#f12c2c',
+            },
+            {
+                label: 'Umidade mínima',
+                data: [12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+                backgroundColor: '#1c55f1',
+                borderColor: '#1c55f1',
+            }
+        ]
+    },
+    options: {
+        scales: {
+            y: {
+                min: 10,
+                max: 16,
+                title: {
+                    display: true,
+                    text: '(%)'
+                },
+            }
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    boxWidth: 22,
+                    padding: 20
+                }
+            }
+        }
+    }
+});
+    }
+}
 </script>
 
 </html>
