@@ -1,0 +1,460 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+}
+
+:root {
+    --tamanho-header: 80px;
+    --tamanho-footer: 260px;
+    --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+}
+
+/* Header */
+
+.header {
+    height: var(--tamanho-header);
+    background-color: #176C91;
+}
+
+.navbar {
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    width: 95%;
+    margin: auto;
+}
+
+.header img {
+    width: 80px;
+}
+
+.navbar {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    color: white;
+}
+
+.navbar .div_esquerda {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
+.navbar .div_direita {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+}
+
+.agora {
+    font-weight: 800;
+}
+
+/* CADASTRO E LOGIN */
+
+.banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(./img/sojaBackground.jpg);
+    height: 650px;
+    background-size: cover;
+    padding-top: 10px;
+}
+
+.banner img {
+    width: 200px;
+    height: 100px;
+}
+
+.caixa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: black 8px 8px 8px 0px;
+    gap: 10px;
+    width: 18%;
+    border-radius: 10px;
+    padding: 2%;
+    margin-bottom: 20px;
+}
+
+.titulo {
+    margin: 0;
+    color: #176C91;
+    font-size: 20px;
+}
+
+.titulo h3 {
+    margin: 0;
+}
+
+.caixa:hover {
+    box-shadow: black 10px 10px 10px 0px;
+    padding: 3%;
+    transition: 1s;
+}
+
+.campo input {
+    padding: 10px;
+}
+
+.botao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3a8bae;
+    height: 40px;
+    width: 185px;
+    padding: 8px;
+    font-size: 25px;
+    color: white;
+    margin-top: 12px;
+    border-radius: 5px;
+}
+
+.botao:hover {
+    height: 45px;
+    width: 190px;
+    transition: 0.5s;
+    background-color: #015579;
+    cursor: pointer;
+}
+
+/* MONITORAMENTO */
+
+.navbar .img_fundo_azul {
+    height: calc(var(--tamanho-header) * 0.8);
+    width: auto;
+}
+
+#grafico_temperatura {
+    height: 300px;
+    width: 600px;
+}
+
+#grafico_umidade {
+    height: 300px;
+    width: 600px;
+}
+
+.boxes_dados {
+    width: 100%;
+}
+
+.monitoramento {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    gap: 10px;
+}
+
+.monitoramento h6 {
+    margin: 10px 0;
+    font-size: 40px;
+}
+
+.monitoramento .alerta {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    border: rgb(0, 0, 0) solid;
+    border-radius: 10px;
+    border-style: dashed;
+    width: 500px;
+    height: 40px;
+}
+
+.monitoramento .alerta_temp_umid {
+    color: red;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+/* .grafico {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: #015579 solid;
+    padding: 15px;
+    height: 500px;
+    width: 90%;
+} */
+
+#div_grafico {
+    display: flex;
+    justify-content: center;
+    border: #015579 solid;
+    padding: 15px;
+}
+
+#div_grafico img {
+    width: 90%;
+}
+
+#sel_silo {
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #d3d1d1;
+    font-weight: 700;
+}
+
+.historico {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-top: #015579 solid;
+    margin: 25px 0;
+}
+
+.historico h6 {
+    margin: 10px 0;
+    font-size: 40px;
+}
+
+.img_dados_teste {
+    margin: 0;
+    border: #015579 solid;
+    height: 300px;
+}
+
+
+/* SITE */
+
+.container .boxes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 30px 0;
+}
+
+main .container .boxes h6 {
+    color: #176C91;
+    font-size: 30px;
+}
+
+main .container .boxes p {
+    font-size: 25px;
+}
+
+main .container .boxes .img_logo {
+    width: 300px;
+}
+
+h6 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.box1 {
+    display: flex;
+    justify-content: flex-start;
+    gap: 150px;
+    margin-top: 50px;
+    border: 4px solid #176C91;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.box1 .texto {
+    justify-content: flex-start;
+    text-align: justify;
+}
+
+.box1 img {
+    border: #176C91 solid 4px;
+    width: 620px;
+    align-self: center;
+    height: 400px;
+    border-radius: 10px;
+
+}
+
+.box2 {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    gap: 150px;
+    margin-top: 50px;
+    border: 4px solid #176C91;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.box2 .texto {
+    justify-content: flex-start;
+    text-align: justify;
+}
+
+.box2 img {
+    border: #176C91 solid 4px;
+    width: 620px;
+    align-self: center;
+    height: 400px;
+    border-radius: 10px;
+}
+
+.box3 {
+    display: flex;
+    justify-content: flex-start;
+    gap: 150px;
+    margin-top: 50px;
+    border: 4px solid #176C91;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.box3 .texto {
+    justify-content: flex-start;
+    text-align: justify;
+}
+
+.box3 img {
+    border: #176C91 solid 4px;
+    width: 620px;
+    align-self: center;
+    height: 400px;
+    border-radius: 10px;
+
+}
+
+.ModeloDeNegócio {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.ModeloDeNegócio img {
+    width: 70%;
+    border: #176C91 solid 4px;
+}
+
+
+/* CALCULADORA */
+
+.calculadora {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(8, 28, 59);
+    color: white;
+    gap: 10px;
+    padding: 35px;
+}
+
+.calculadora h1,
+h2 {
+    margin: 0;
+}
+
+.calculadora input {
+    padding: 4px;
+    border-radius: 0.2rem;
+    border: none;
+    font-size: 1rem;
+}
+
+.calculadora #div_resultado {
+    margin: 10px 100px;
+    text-align: center;
+}
+
+.calculadora #div_resultado h3 {
+    font-size: 14pt;
+}
+
+.calculadora .vermelho {
+    color: rgb(204, 27, 27);
+}
+
+.calculadora .verde {
+    color: rgb(51, 219, 51);
+}
+
+.calculadora button {
+    background-color: #41b128;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 0.2rem;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.calculadora button:hover {
+    background-color: #106635;
+    font-size: 18px;
+    padding: 15px;
+    transition: 1s;
+}
+
+/* Footer */
+.agrotech_redesSociais {
+    width: 30px;
+    height: 30px;
+}
+
+.footer {
+    display: flex;
+    height: var(--tamanho-footer);
+    width: 100%;
+    background-color: #176C91;
+    justify-content: space-around;
+    padding-bottom: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.div_icons {
+    display: flex;
+    height: 30px;
+    gap: 20px;
+    flex-direction: row;
+}
+
+.div_icons img {
+    height: 30px;
+    width: 30px;
+}
+
+.texto_footer a {
+    display: flex;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer h2 {
+    margin: 20px 0px;
+}
+
+#agrotech_logo {
+    margin-top: 30px;
+    height: 50px;
+    width: auto;
+}

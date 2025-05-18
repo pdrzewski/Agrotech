@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento AgroTech</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="navbar">
+            <img src="./img/Logo-Azul.png">
+            <div class="div_esquerda">
+                <li class="agora">
+                    <a href="#monitoramento">Monitoramento</a>
+                </li>
+                <li class="">
+                    <a href="#historico">Histórico</a>
+                </li>
+            </div>
+            <div>
+                <img class="img_fundo_azul" src="./img/Agrotech-Fundo-Azul.png">
+            </div>
+            <div class="div_direita">
+                <li class="">
+                    <div id="div_usuario">Usuário</div>
+                </li>
+            </div>
+            <img src="./img/person-circle.svg" alt="Usuário">
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="boxes_dados">
+                <div class="monitoramento" id="monitoramento">
+                    <div>
+                        <h6>Monitoramento em tempo real</h6>
+                    </div>
+                    <div>
+                        <select onchange="grafico(this)" name="Silo" id="sel_silo">
+                            <option value="silo1">Silo 1</option>
+                            <option value="silo2">Silo 2</option>
+                            <option value="silo3">Silo 3</option>
+                        </select>
+                    </div>
+                    <div class="alerta" id="alerta">
+                        <p>⚠️ Quantidade de alertas: 1 ⚠️</p>
+                        <p id="verificar_alerta">Verificar silo: 1</p>
+                    </div>
+                    <div class="alerta_temp_umid" id="alerta_temp_umid">Umidade acima do esperado!</div>
+                    <div id="div_grafico">
+                        <img src="./img/Grafico-Silo1.png" alt="">
+                    </div>
+                </div>
+                <div class="historico" id="historico">
+                    <div>
+                        <h6>Histórico dos dados</h6>
+                    </div>
+                    <div id="div_historico">
+                        <img class="img_dados_teste" src="./img/Historico_Silo1.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div class="footer">
+        <div>
+            <img src="./img/Agrotech-Fundo-Azul.png" alt="logo/agrotech" id="agrotech_logo">
+            <p class="texto_footer">Empresa número 1 em tecnologia no <br> setor agropecuário</p>
+            <div class="div_icons">
+                <img src="img/icons8-facebook-circled-50.png" alt="icon/facebook" id="facebook">
+                <img src="img/icons8-twitter-bird-30.png" alt="icon/twitter" id="twitter">
+                <img src="img/icons8-instagram-26.png" alt="icon/instagram" id="instagram">
+                <img src="img/icons8-linkedin-30.png" alt="icon/linkedin" id="linkedin">
+                <img src="img/icons8-youtube-50.png" alt="icon/youtube" id="youtube">
+            </div>
+        </div>
+        <div class="lado_direito">
+            <div>
+                <h2>Fundadores</h2>
+                <p>Giovanna Tracinkas</p>
+                <p>Guilherme Aoki</p>
+                <p>Guilherme Barros</p>
+                <p>João Oliveira</p>
+                <p>Pedro Tomaszewski</p>
+                <p>Kauã Medeiros</p>
+            </div>
+        </div>
+        <div class="texto_footer">
+            <h2>Mais informações</h2>
+            <a href="Site-Institucional.html">Home</a> <br>
+            <a href="login.html">Login</a> <br>
+            <a href="calculadora.html">Simulação</a>
+        </div>
+        <div class="texto_footer">
+            <h2>Contate-nos</h2>
+            <p>vendas@agrotech.com</p>
+            <p>(11) 98838-0889</p>
+            <p>Rua Haddock Lobo, 595. -</p>
+            <p>Cerqueira César, São Paulo - SP</p>
+            <p>01414-001</p>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    function grafico(option){
+        var sel_silo = option.value;
+        if (sel_silo == 'silo1'){
+            alerta.innerHTML = `<p>⚠️ Quantidade de alertas: 1 ⚠️</p>
+                        <p id="verificar_alerta">Verificar silo: 1</p>`
+            alerta_temp_umid.innerHTML = `Umidade acima do esperado!`;
+            div_grafico.innerHTML = `<img src="./img/Grafico-Silo1.png" alt="">`;
+            div_historico.innerHTML = `<img class="img_dados_teste" src="./img/Historico_Silo1.png" alt="">`;
+        } else if (sel_silo == 'silo2'){
+            alerta.innerHTML = `<p>⚠️ Quantidade de alertas: 1 ⚠️</p>
+                        <p id="verificar_alerta">Verificar silo: 1</p>`
+            alerta_temp_umid.innerHTML = `Sem alertas!`;
+            div_grafico.innerHTML = `<img src="./img/Grafico-Silo2.png" alt="">`;
+            div_historico.innerHTML = `<img class="img_dados_teste" src="./img/Historico_Silo2.png" alt="">`;
+        } else if (sel_silo == 'silo3'){
+            alerta.innerHTML = `<p>⚠️ Quantidade de alertas: 1 ⚠️</p>
+                        <p id="verificar_alerta">Verificar silo: 1</p>`
+            alerta_temp_umid.innerHTML = `Sem alertas!`;
+            div_grafico.innerHTML = `<img src="./img/Grafico-Silo3.png" alt="">`;
+            div_historico.innerHTML = `<img class="img_dados_teste" src="./img/Historico_Silo3.png" alt="">`;
+        }
+    }
+    
+</script>
+
+</html>

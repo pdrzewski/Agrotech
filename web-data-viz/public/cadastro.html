@@ -1,150 +1,118 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>AquaTech | Cadastro</title>
-
-  <script src="./js/sessao.js"></script>
-
-  <link rel="stylesheet" href="./css/estilo.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro AgroTech</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
-<body onload="listar()">
-  <!--header inicio-->
-  <div class="header">
-    <div class="container">
-      <h1 class="titulo">AquaTech</h1>
-      <ul class="navbar">
-        <li>
-          <a href="index.html">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
-        </li>
-      </ul>
+<div class="header">
+  <div class="navbar">
+    <img src="./img/Logo-Azul.png">
+    <div class="div_esquerda">
+      <li class="">
+        <a href="./index.html">Sobre nós</a>
+      </li>
+      <li class="">
+        <a href="./calculadora.html">Simulador</a>
+      </li>
+      <li class="">
+        <a href="#footer">Contatos</a>
+      </li>
+    </div>
+    <div class="div_direita">
+      <li class="">
+        <a href="./login.html">Login</a>
+      </li>
+      <li class="agora">
+        <a href="">Cadastro</a>
+      </li>
     </div>
   </div>
-  <!--header fim-->
+</div>
 
-  <div class="login">
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
+<body>
+  <div class="banner">
+    <img src="./img/agrotech1-removebg-preview.png" alt="">
+    <div class="caixa">
+      <div class="titulo">
+        <h3>Cadastro</h3>
+      </div>
+      <div class="campo">
+        <p>E-mail do Usuário:</p>
+        <input type="text" id="email_input" placeholder="Ex: gerente@agrotech.com.br">
+      </div>
+      <div class="campo">
+        <p>Senha:</p>
+        <input type="password" id="senha_input" placeholder="Ex: AgroMoni@01">
+      </div>
+      <button class="botao" onclick="cadastrar()">Cadastrar</button>
+    </div>
+    <div class="footer" id="footer">
+      <div>
+        <img src="./img/Agrotech-Fundo-Azul.png" alt="logo/agrotech" id="agrotech_logo">
+        <p class="texto_footer">Empresa número 1 em tecnologia no <br> setor agropecuário</p>
+        <div class="div_icons">
+          <img src="img/icons8-facebook-circled-50.png" alt="icon/facebook" id="facebook">
+          <img src="img/icons8-twitter-bird-30.png" alt="icon/twitter" id="twitter">
+          <img src="img/icons8-instagram-26.png" alt="icon/instagram" id="instagram">
+          <img src="img/icons8-linkedin-30.png" alt="icon/linkedin" id="linkedin">
+          <img src="img/icons8-youtube-50.png" alt="icon/youtube" id="youtube">
+        </div>
+      </div>
+      <div class="lado_direito">
+        <div>
+          <h2>Fundadores</h2>
+          <p>Giovanna Tracinkas</p>
+          <p>Guilherme Aoki</p>
+          <p>Guilherme Barros</p>
+          <p>João Oliveira</p>
+          <p>Pedro Tomaszewski</p>
+          <p>Kauã Medeiros</p>
+        </div>
+      </div>
+      <div class="texto_footer">
+        <h2>Mais informações</h2>
+        <a href="index.html">Home</a> <br>
+        <a href="login.html">Login</a> <br>
+        <a href="calculadora.html">Simulação</a>
+      </div>
+      <div class="texto_footer">
+        <h2>Contate-nos</h2>
+        <p>vendas@agrotech.com</p>
+        <p>(11) 98838-0889</p>
+        <p>Rua Haddock Lobo, 595. -</p>
+        <p>Cerqueira César, São Paulo - SP</p>
+        <p>01414-001</p>
       </div>
     </div>
-    <div class="container">
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
-          </div>
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
-          </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
-        </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div>
-
-        <div id="div_erros_login"></div>
-      </div>
-    </div>
-  </div>
-
-  <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
-    </div>
-  </div>
-  <!--footer fim-->
 </body>
 
-</html>
-
 <script>
-
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
-
+  let listaEmpresasCadastradas = []
   function cadastrar() {
-    // aguardar();
+    var usuario = email_input.value;
+    var senha = senha_input.value;
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
-
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
-
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
+    while (true) {
+      if (usuario.includes('@') && usuario.includes('.com')) {
+        if (senha.length > 9) {
+          if (usuario != '' && usuario.length > 4) {
+            alert(`Cadastro concluido com sucesso, ${usuario}.`);
+            window.location = "./login.html";
+          } else {
+            alert(`O nome de usuário deve conter mais de 4 caracteres e não pode estar vazio.`);
+          }
+        } else {
+          alert(`A senha precisa ter 10 ou mais caracteres.`);
+        }
       }
+      else {
+        alert(`O usuario precisa conter @ e .com.`);
+      }
+      break;
     }
-
-    // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
       method: "POST",
       headers: {
@@ -153,60 +121,12 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        emailServer: usuario,
+        senhaServer: senha
       }),
     })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
-
-    return false;
   }
 
-  // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
-
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
 </script>
+
+</html>
