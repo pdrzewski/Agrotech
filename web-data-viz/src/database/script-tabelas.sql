@@ -19,12 +19,18 @@ CREATE TABLE empresa (
 
 CREATE TABLE usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
+	login VARCHAR(50),
 	senha VARCHAR(50),
 	fk_empresa INT,
 	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
 );
+
+select * from usuario;
+
+
+select * from aquario;
+
+drop table usuario;
 
 CREATE TABLE aviso (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -55,6 +61,8 @@ create table medida (
 	fk_aquario INT,
 	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
 );
+
+select * from usuario;
 
 insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
 insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
