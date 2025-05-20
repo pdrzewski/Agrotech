@@ -12,7 +12,9 @@ create table empresa (
 create table usuario (
     id int primary key auto_increment,
     login varchar(45),
-    senha varchar(45));
+    senha varchar(45),
+    fkEmpresa int,
+    foreign key (fkEmpresa) references empresa(id));
 
 create table silo (
     id int primary key auto_increment,
@@ -85,3 +87,6 @@ SELECT * FROM dados;
 
 select emp.nome as Empresa, sen.posicao, sil.setor from empresa as emp inner join silo as sil on sil.fkEmpresa = emp.id inner join sensor as sen on sen.fkSilo = sil.id;
 
+SELECT temperatura, umidade, data_dado FROM dados da
+INNER JOIN sensor se ON se.id = da.fkSensor
+WHERE fkSilo = 1;
