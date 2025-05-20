@@ -9,8 +9,8 @@ function buscarUltimasMedidas(idSilo, limite_linhas) {
                         FROM dados da
                         INNER JOIN sensor se
                         ON se.id = da.fkSensor
-                        WHERE fkSilo = ${idSilo};
-                        `;
+                        WHERE fkSilo = ${idSilo}
+                        ORDER BY momento_grafico;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -24,8 +24,8 @@ function buscarMedidasEmTempoReal(idSilo) {
                         FROM dados da
                         INNER JOIN sensor se
                         ON se.id = da.fkSensor
-                        WHERE fkSilo = ${idSilo};
-                        `;
+                        WHERE fkSilo = ${idSilo}
+                        ORDER BY momento_grafico;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

@@ -1,4 +1,3 @@
-DROP DATABASE agrotech;
 create database agrotech;
 
 use agrotech;
@@ -68,6 +67,10 @@ INSERT INTO sensor (tipo, posicao, fkSilo) VALUES
 
 INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
 ('2025-04-15 10:00:00', 25.5, 13.2, 1),
+('2025-04-15 10:15:00', 26.1, 13.5, 1);
+
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 10:00:00', 25.5, 13.2, 1),
 ('2025-04-15 10:15:00', 26.1, 13.5, 1),
 ('2025-04-15 10:30:00', 24.9, 13.8, 2),
 ('2025-04-15 10:45:00', 25.8, 13.9, 2),
@@ -82,20 +85,14 @@ INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
 
 
 INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 10:00:00', 25.5, 13.2, 1),
+('2025-04-15 10:15:00', 26.1, 13.5, 1),
 ('2025-04-15 10:30:00', 24.9, 13.8, 1),
 ('2025-04-15 10:45:00', 25.8, 13.9, 1),
 ('2025-04-15 11:00:00', 27.0, 13.1, 1),
 ('2025-04-15 11:15:00', 26.5, 13.3, 1),
 ('2025-04-15 11:30:00', 28.2, 13.7, 1),
 ('2025-04-15 11:45:00', 27.8, 13.2, 1);
-
-INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
-('2025-04-15 12:30:00', 24.9, 13.8, 1),
-('2025-04-15 12:45:00', 25.8, 13.9, 1),
-('2025-04-15 13:00:00', 27.0, 13.1, 1),
-('2025-04-15 13:15:00', 26.5, 13.3, 1),
-('2025-04-15 13:30:00', 28.2, 13.7, 1),
-('2025-04-15 13:45:00', 27.8, 13.2, 1);
 
 
 SELECT * FROM empresa;
@@ -109,3 +106,12 @@ select emp.nome as Empresa, sen.posicao, sil.setor from empresa as emp inner joi
 SELECT temperatura, umidade, data_dado FROM dados da
 INNER JOIN sensor se ON se.id = da.fkSensor
 WHERE fkSilo = 1;
+
+SELECT temperatura, umidade, 
+data_dado,
+TIME(data_dado) as momento_grafico
+FROM dados da
+INNER JOIN sensor se
+ON se.id = da.fkSensor
+WHERE fkSilo = 1
+ORDER BY momento_grafico;
