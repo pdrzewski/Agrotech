@@ -8,7 +8,7 @@ router.get("/ultimas/:idSilo", function (req, res) {
 });
 
 router.get("/tempo-real/:idSilo", function (req, res) {
-    medidaController.buscarMedidasEmTempoReal(req, res);
+    medidaController.buscarMedidasEmTempoReal(req, res);  // Função localizada no medidaController.js
 })
 
 module.exports = router;

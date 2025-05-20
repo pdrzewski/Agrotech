@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monitoramento AgroTech</title>
     <link rel="stylesheet" href="style.css">
+    <script src="./../js/alerta.js"></script>
 </head>
 
 <body>
@@ -262,12 +263,12 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    
+
     let proximaAtualizacao;
 
     function criarGraficos(nomeDoSilo) {
         const idSilo = nomeDoSilo.split(' ')[1].trim();
-        console.log(idSilo)
+        console.log('Número do silo: ', idSilo)
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -277,7 +278,6 @@
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
 
                     plotarGrafico(resposta, idSilo);
 
@@ -302,34 +302,84 @@
         let labels = [];
 
         // Criando estrutura para plotar gráfico - dados
-        let dados = {
+        let dadosTemp = {
             labels: labels,
-            datasets: [{
-                label: 'Umidade',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
-        };
+            datasets: [
+                {
+                    label: 'Temperatura atual',
+                    data: [],
+                    backgroundColor: '#3cff66',
+                    borderColor: '#3cff66',
+                },
+                {
+                    label: 'Temperatura máxima',
+                    data: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+                    backgroundColor: '#f12c2c',
+                    borderColor: '#f12c2c',
+                },
+                {
+                    label: 'Temperatura mínima',
+                    data: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
+                    backgroundColor: '#1c55f1',
+                    borderColor: '#1c55f1',
+                }
+            ]
+        }
+        // {
+        //     labels: labels,
+        //     datasets: [{
+        //         label: 'Temperatura',
+        //         data: [],
+        //         fill: false,
+        //         borderColor: 'rgb(199, 52, 52)',
+        //         tension: 0.1
+        //     }]
+        // };
+
+        let dadosUmid = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Umidade atual',
+                    data: [],
+                    backgroundColor: '#3cff66',
+                    borderColor: '#3cff66',
+                },
+                {
+                    label: 'Umidade máxima',
+                    data: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14],
+                    backgroundColor: '#f12c2c',
+                    borderColor: '#f12c2c',
+                },
+                {
+                    label: 'Umidade mínima',
+                    data: [12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+                    backgroundColor: '#1c55f1',
+                    borderColor: '#1c55f1',
+                }
+            ]
+        }
+        // {
+        //     labels: labels,
+        //     datasets: [{
+        //         label: 'Umidade',
+        //         data: [],
+        //         fill: false,
+        //         borderColor: 'rgb(75, 192, 192)',
+        //         tension: 0.1
+        //     }]
+        // };
 
         console.log('----------------------------------------------')
         console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
         console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
+        for (i = 0; i < 10; i++) {
+            var registro = resposta[resposta.length - 10 + i];
             labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
+            dadosTemp.datasets[0].data.push(registro.temperatura);
+            dadosUmid.datasets[0].data.push(registro.umidade);
         }
 
         console.log('----------------------------------------------')
@@ -337,45 +387,104 @@
         console.log('Labels:')
         console.log(labels)
         console.log('Dados:')
-        console.log(dados.datasets)
+        console.log(dadosTemp.datasets)
+        console.log(dadosUmid.datasets)
         console.log('----------------------------------------------')
 
         // Criando estrutura para plotar gráfico - config
-        const config = {
+        const configTemp = {
             type: 'line',
-            data: dados,
+            data: dadosTemp,
+            options: {
+                scales: {
+                    y: {
+                        min: 18,
+                        max: 31,
+                        title: {
+                            display: true,
+                            text: '(°C)'
+                        },
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 15,
+                            padding: 10,
+                            filter: function (legendItem, data) {
+                                return legendItem.text === 'Temperatura atual';
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const configUmid = {
+            type: 'line',
+            data: dadosUmid,
+            options: {
+                scales: {
+                    y: {
+                        min: 10,
+                        max: 16,
+                        title: {
+                            display: true,
+                            text: '(%)'
+                        },
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 15,
+                            padding: 10,
+                            filter: function (legendItem, data) {
+                                return legendItem.text === 'Umidade atual';
+                            }
+                        }
+                    }
+                }
+            }
         };
 
         // Adicionando gráfico criado em div na tela
         let myChartTemp = new Chart(
             document.getElementById(`grafico_temperatura_${idSilo}`),
-            config
+            configTemp
         );
 
-        setTimeout(() => atualizarGrafico(idSilo, dados, myChartTemp), 2000);
+        let myChartUmid = new Chart(
+            document.getElementById(`grafico_umidade_${idSilo}`),
+            configUmid
+        );
+
+        setTimeout(() => atualizarGraficoTemperatura(idSilo, dadosTemp, myChartTemp), 2000);
+        setTimeout(() => atualizarGraficoUmidade(idSilo, dadosUmid, myChartUmid), 2000);
     }
-
-    function atualizarGrafico(idSilo, dados, myChartTemp) {
-
-
-
-        fetch(`/medidas/tempo-real/${idSilo}`, { cache: 'no-store' }).then(function (response) {
+    
+    function atualizarGraficoTemperatura(idSensor, dados, myChart) {
+        fetch(`/medidas/tempo-real/${idSensor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
-                    obterdados(idSilo);
-                    // alertar(novoRegistro, idSilo);
+                    obterdados(idSensor); // função localizada no alerta.js
+                    // alertar(novoRegistro, idSensor);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
 
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idSilo}`)
-                    avisoCaptura.innerHTML = ""
+                    // let avisoCaptura = document.getElementById(`avisoCaptura${idSensor}`)
+                    // avisoCaptura.innerHTML = ""
 
 
                     if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
                         console.log("Horário do novo dado capturado:")
                         console.log(novoRegistro[0].momento_grafico)
                         console.log("Horário do último dado capturado:")
@@ -384,24 +493,22 @@
                     } else {
                         // tirando e colocando valores no gráfico
                         dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+                        dados.labels.push(novoRegistro[dados.labels.length - 1].momento_grafico); // incluir um novo momento (medidaModel.js)
 
+                        console.log(dados.labels.length - 1)
                         dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+                        dados.datasets[0].data.push(novoRegistro[dados.labels.length - 1].temperatura); // incluir uma nova medida de umidade
 
-                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                        myChartTemp.update();
+                        myChart.update();
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idSilo, dados, myChartTemp), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoTemperatura(idSensor, dados, myChart), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idSilo, dados, myChartTemp), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoTemperatura(idSensor, dados, myChart), 2000);
             }
         })
             .catch(function (error) {
@@ -410,123 +517,56 @@
 
     }
 
-    // function criarGraficos() {
-    //     for (let i = 1; i <= 3; i++) {
-    //         const temperatura = document.getElementById(`grafico_temperatura_${i}`);
-    //         const umidade = document.getElementById(`grafico_umidade_${i}`);
+    function atualizarGraficoUmidade(idSensor, dados, myChart) {
+        fetch(`/medidas/tempo-real/${idSensor}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+                    obterdados(idSensor); // função localizada no alerta.js
+                    // alertar(novoRegistro, idSensor);
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                    // let avisoCaptura = document.getElementById(`avisoCaptura${idSensor}`)
+                    // avisoCaptura.innerHTML = ""
 
 
-    //         temperatura.style.width = '100%';
-    //         temperatura.style.height = '200px';
-    //         umidade.style.width = '100%';
-    //         umidade.style.height = '200px';
+                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].momento_grafico)
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length - 1])
+                        console.log("---------------------------------------------------------------")
+                    } else {
+                        // tirando e colocando valores no gráfico
+                        dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(novoRegistro[dados.labels.length - 1].momento_grafico); // incluir um novo momento (medidaModel.js)
 
-    //         new Chart(temperatura, {
-    //             type: 'line',
-    //             data: {
-    //                 labels: ['15:12:00', '15:12:01', '15:12:02', '15:12:03', '15:12:04', '15:12:05', '15:12:06', '15:12:07', '15:12:08', '15:12:09'],
-    //                 datasets: [
-    //                     {
-    //                         label: 'Temperatura atual',
-    //                         data: [22.4, 22.5, 22.8, 22.2, 22.4, 22.1, 22.0, 22.8, 22, 22.5],
-    //                         backgroundColor: '#3cff66',
-    //                         borderColor: '#3cff66',
-    //                     },
-    //                     {
-    //                         label: 'Temperatura máxima',
-    //                         data: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
-    //                         backgroundColor: '#f12c2c',
-    //                         borderColor: '#f12c2c',
-    //                     },
-    //                     {
-    //                         label: 'Temperatura mínima',
-    //                         data: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
-    //                         backgroundColor: '#1c55f1',
-    //                         borderColor: '#1c55f1',
-    //                     }
-    //                 ]
-    //             },
-    //             options: {
-    //                 scales: {
-    //                     y: {
-    //                         min: 18,
-    //                         max: 31,
-    //                         title: {
-    //                             display: true,
-    //                             text: '(°C)'
-    //                         },
-    //                     }
-    //                 },
-    //                 plugins: {
-    //                     legend: {
-    //                         display: true,
-    //                         position: 'bottom',
-    //                         labels: {
-    //                             boxWidth: 15,
-    //                             padding: 10,
-    //                             filter: function (legendItem, data) {
-    //                                 return legendItem.text === 'Temperatura atual';
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         });
+                        console.log(dados.labels.length - 1)
+                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[0].data.push(novoRegistro[dados.labels.length - 1].umidade); // incluir uma nova medida de umidade
 
+                        myChart.update();
+                    }
 
-    //         new Chart(umidade, {
-    //             type: 'line',
-    //             data: {
-    //                 labels: ['15:12:00', '15:12:01', '15:12:02', '15:12:03', '15:12:04', '15:12:05', '15:12:06', '15:12:07', '15:12:08', '15:12:09'],
-    //                 datasets: [
-    //                     {
-    //                         label: 'Umidade atual',
-    //                         data: [12, 12, 12, 13, 13, 14, 14, 13, 13, 13],
-    //                         backgroundColor: '#3cff66',
-    //                         borderColor: '#3cff66',
-    //                     },
-    //                     {
-    //                         label: 'Umidade máxima',
-    //                         data: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14],
-    //                         backgroundColor: '#f12c2c',
-    //                         borderColor: '#f12c2c',
-    //                     },
-    //                     {
-    //                         label: 'Umidade mínima',
-    //                         data: [12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
-    //                         backgroundColor: '#1c55f1',
-    //                         borderColor: '#1c55f1',
-    //                     }
-    //                 ]
-    //             },
-    //             options: {
-    //                 scales: {
-    //                     y: {
-    //                         min: 10,
-    //                         max: 16,
-    //                         title: {
-    //                             display: true,
-    //                             text: '(%)'
-    //                         },
-    //                     }
-    //                 },
-    //                 plugins: {
-    //                     legend: {
-    //                         display: true,
-    //                         position: 'bottom',
-    //                         labels: {
-    //                             boxWidth: 15,
-    //                             padding: 10,
-    //                             filter: function (legendItem, data) {
-    //                                 return legendItem.text === 'Umidade atual';
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         });
-    //     }
-    // }
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoUmidade(idSensor, dados, myChart), 2000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGraficoUmidade(idSensor, dados, myChart), 2000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
 </script>
 
 </html>
