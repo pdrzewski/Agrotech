@@ -102,6 +102,10 @@
         console.log("FORM LOGIN: ", usuario);
         console.log("FORM SENHA: ", senha);
 
+        if (usuario == 'n3@gmail.com' && senha == 'acessoN3_2024') {
+            window.location = 'http://localhost:3001'
+        }
+
         fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
