@@ -303,23 +303,24 @@
             })
             .then(resposta => {
                 console.log(`Dados recebidos do sensor ${idSensor}:`, resposta);
-                plotarGrafico(resposta, idSensor, graficoIndex);
+                plotarGrafico(idSilo, resposta, idSensor, graficoIndex);
             })
             .catch(error => {
                 console.error(`Erro ao buscar dados do sensor ${idSensor}:`, error);
             });
     }
 
-    function plotarGrafico(resposta, idSensor, graficoIndex) {
+    function plotarGrafico(idSilo, resposta, idSensor, graficoIndex) {
 
         console.log('iniciando plotagem do gráfico...');
 
         // Criando estrutura para plotar gráfico - labels
-        let labels = [];
+        let labelsTemp = [];
+        let labelsUmid = [];
 
         // Criando estrutura para plotar gráfico - dados
         let dadosTemp = {
-            labels: labels,
+            labels: labelsTemp,
             datasets: [
                 {
                     label: 'Temperatura atual',
@@ -343,7 +344,7 @@
         }
 
         let dadosUmid = {
-            labels: labels,
+            labels: labelsUmid,
             datasets: [
                 {
                     label: 'Umidade atual',
@@ -385,7 +386,8 @@
                 }
             }
 
-            labels.push(registro.momento_grafico);
+            labelsTemp.push(registro.momento_grafico);
+            labelsUmid.push(registro.momento_grafico);
             dadosTemp.datasets[0].data.push(temperatura);
             dadosUmid.datasets[0].data.push(umidade);
         });
@@ -394,20 +396,22 @@
         console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
         console.log(resposta)
 
-        while (labels.length < 10) {
-            labels.push(new Date().toLocaleTimeString());
+        // while (labels.length < 10) {
+        //     labels.push(new Date().toLocaleTimeString());
 
-            const baseTemp = graficoIndex === 2 ? 25 : (graficoIndex === 1 ? 26 : 24);
-            const baseUmid = graficoIndex === 2 ? 13 : (graficoIndex === 1 ? 12.5 : 13.5);
+        //     const baseTemp = graficoIndex === 2 ? 25 : (graficoIndex === 1 ? 26 : 24);
+        //     const baseUmid = graficoIndex === 2 ? 13 : (graficoIndex === 1 ? 12.5 : 13.5);
 
-            dadosTemp.datasets[0].data.push(baseTemp);
-            dadosUmid.datasets[0].data.push(baseUmid);
-        }
+        //     dadosTemp.datasets[0].data.push(baseTemp);
+        //     dadosUmid.datasets[0].data.push(baseUmid);
+        // }
 
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
+        console.log('Labels temperatura:')
+        console.log(labelsTemp)
+        console.log('Labels umidade:')
+        console.log(labelsUmid)
         console.log('Dados:')
         console.log(dadosTemp.datasets)
         console.log(dadosUmid.datasets)
@@ -485,46 +489,46 @@
             configUmid
         );
 
-        setTimeout(() => atualizarGraficoTemperatura(idSensor, dadosTemp, myChartTemp, graficoIndex), 2000);
-        setTimeout(() => atualizarGraficoUmidade(idSensor, dadosUmid, myChartUmid, graficoIndex), 2000);
+        setTimeout(() => atualizarGraficoTemperatura(idSilo, idSensor, dadosTemp, myChartTemp, graficoIndex), 2000);
+        setTimeout(() => atualizarGraficoUmidade(idSilo, idSensor, dadosUmid, myChartUmid, graficoIndex), 2000);
     }
 
-    function atualizarGraficoTemperatura(idSensor, dados, myChart, graficoIndex) {
-        fetch(`/medidas/tempo-real/${idSensor}`, { cache: 'no-store' }).then(function (response) {
+    function atualizarGraficoTemperatura(idSilo, idSensor, dadosTemp, myChart, graficoIndex) {
+        fetch(`/medidas/tempo-real/${idSilo}/${idSensor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
                     // obterdados(idSensor); // função localizada no alerta.js
                     // alertar(novoRegistro, idSensor);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
+                    console.log(`Dados atuais do gráfico Temperatura:`);
+                    console.log(dadosTemp);
 
-                    let temperatura = novoRegistro[0].temperatura;
+                    let temperatura = novoRegistro[novoRegistro.length - 1].temperatura;
                     if (graficoIndex !== 2) {
                         const fatorVariacao = (idSensor % 10) * 0.01 + 0.02;
                         temperatura = graficoIndex === 1
-                            ? novoRegistro[0].temperatura * (1 + fatorVariacao)
-                            : novoRegistro[0].temperatura * (1 - fatorVariacao);
+                            ? novoRegistro[novoRegistro.length - 1].temperatura * (1 + fatorVariacao)
+                            : novoRegistro[novoRegistro.length - 1].temperatura * (1 - fatorVariacao);
                     }
 
-                    if (dados.labels.length >= 10) {
-                        dados.labels.shift();
-                        dados.datasets[0].data.shift();
+                    if (dadosTemp.labels.length >= 10) {
+                        dadosTemp.labels.shift();
+                        dadosTemp.datasets[0].data.shift();
                     }
 
-                    dados.labels.push(novoRegistro[0].momento_grafico);
-                    dados.datasets[0].data.push(temperatura);
+                    dadosTemp.labels.push(novoRegistro[novoRegistro.length - 1].momento_grafico);
+                    dadosTemp.datasets[0].data.push(temperatura);
 
                     myChart.update();
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGraficoTemperatura(idSensor, dados, myChart, graficoIndex), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoTemperatura(idSilo, idSensor, dadosTemp, myChart, graficoIndex), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoTemperatura(idSensor, dados, myChart, graficoIndex), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoTemperatura(idSilo, idSensor, dadosTemp, myChart, graficoIndex), 2000);
             }
         })
             .catch(function (error) {
@@ -533,40 +537,40 @@
 
     }
 
-    function atualizarGraficoUmidade(idSensor, dados, myChart, graficoIndex) {
-        fetch(`/medidas/tempo-real/${idSensor}`, { cache: 'no-store' }).then(function (response) {
+    function atualizarGraficoUmidade(idSilo, idSensor, dadosUmid, myChart, graficoIndex) {
+        fetch(`/medidas/tempo-real/${idSilo}/${idSensor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
                     // obterdados(idSensor); // função localizada no alerta.js
                     // alertar(novoRegistro, idSensor);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
+                    console.log(`Dados atuais do gráfico Umidade:`);
+                    console.log(dadosUmid);
 
-                    let umidade = novoRegistro[0].umidade;
+                    let umidade = novoRegistro[novoRegistro.length - 1].umidade;
                     if (graficoIndex !== 2) {
                         const fatorVariacao = (idSensor % 10) * 0.01 + 0.02;
                         umidade = graficoIndex === 1
-                            ? novoRegistro[0].umidade * (1 - fatorVariacao / 2)
-                            : novoRegistro[0].umidade * (1 + fatorVariacao / 2);
+                            ? novoRegistro[novoRegistro.length - 1].umidade * (1 - fatorVariacao / 2)
+                            : novoRegistro[novoRegistro.length - 1].umidade * (1 + fatorVariacao / 2);
                     }
-
-                    if (dados.labels.length >= 10) {
-                        dados.labels.shift();
-                        dados.datasets[0].data.shift();
+                    
+                    if (dadosUmid.labels.length >= 10) {
+                        dadosUmid.labels.shift();
+                        dadosUmid.datasets[0].data.shift();
                     }
-
-                    dados.labels.push(novoRegistro[0].momento_grafico);
-                    dados.datasets[0].data.push(umidade);
+                    
+                    dadosUmid.labels.push(novoRegistro[novoRegistro.length - 1].momento_grafico);
+                    dadosUmid.datasets[0].data.push(umidade);
 
                     myChart.update();
 
-                    proximaAtualizacao = setTimeout(() => atualizarGraficoUmidade(idSensor, dados, myChart, graficoIndex), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoUmidade(idSilo, idSensor, dadosUmid, myChart, graficoIndex), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoUmidade(idSensor, dados, myChart, graficoIndex), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoUmidade(idSilo, idSensor, dadosUmid, myChart, graficoIndex), 2000);
             }
         })
             .catch(function (error) {
