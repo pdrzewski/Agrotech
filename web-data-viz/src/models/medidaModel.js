@@ -1,7 +1,12 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idSilo, limite_linhas) {
+function buscarSensoresDoSilo(idSilo) {
+    var instrucaoSql = `SELECT id FROM sensor WHERE fkSilo = ${idSilo}`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
+function buscarUltimasMedidas(idSilo, idSensor, limite_linhas) {
     var instrucaoSql = `SELECT temperatura, 
                         umidade, 
                         data_dado,
@@ -10,13 +15,15 @@ function buscarUltimasMedidas(idSilo, limite_linhas) {
                         INNER JOIN sensor se
                         ON se.id = da.fkSensor
                         WHERE fkSilo = ${idSilo}
-                        ORDER BY momento_grafico;`;
+                        AND fkSensor = ${idSensor}
+                        ORDER BY momento_grafico
+                        LIMIT ${limite_linhas};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idSilo) {
+function buscarMedidasEmTempoReal(idSensor) {
 
     var instrucaoSql = `SELECT temperatura, 
                         umidade,
@@ -24,7 +31,7 @@ function buscarMedidasEmTempoReal(idSilo) {
                         FROM dados da
                         INNER JOIN sensor se
                         ON se.id = da.fkSensor
-                        WHERE fkSilo = ${idSilo}
+                        WHERE fkSensor = ${idSensor}
                         ORDER BY momento_grafico;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -33,5 +40,6 @@ function buscarMedidasEmTempoReal(idSilo) {
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarSensoresDoSilo
 }
