@@ -23,19 +23,16 @@ function buscarUltimasMedidas(idSilo, idSensor, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idSilo, idSensor, limite_linhas) {
+function buscarMedidasEmTempoReal(idSensor) {
 
     var instrucaoSql = `SELECT temperatura, 
-                        umidade, 
-                        data_dado,
+                        umidade,
                         TIME(data_dado) as momento_grafico
                         FROM dados da
                         INNER JOIN sensor se
                         ON se.id = da.fkSensor
-                        WHERE fkSilo = ${idSilo}
-                        AND fkSensor = ${idSensor}
-                        ORDER BY momento_grafico
-                        LIMIT ${limite_linhas};`;
+                        WHERE fkSensor = ${idSensor}
+                        ORDER BY momento_grafico;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
