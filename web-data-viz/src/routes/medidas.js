@@ -11,7 +11,7 @@ router.get("/ultimas/:idSilo/:idSensor", function (req, res) {
     medidaController.buscarUltimasMedidas(req, res);
 });
 
-router.get("/tempo-real/:idSensor", function (req, res) {
+router.get("/tempo-real/:idSilo/:idSensor", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 })
 

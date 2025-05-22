@@ -210,7 +210,7 @@ INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
 ('2025-04-15 11:15:00', 28.3, 13.3, 1),
 ('2025-04-15 11:30:00', 25.1, 14.3, 1),
 ('2025-04-15 11:45:00', 24.7, 14.0, 1),
-('2025-04-15 12:00:00', 25.4, 13.5, 1);
+('2025-04-15 12:00:00', 23.9, 13.5, 1);
 
 INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
 ('2025-04-15 10:00:00', 26.2, 13.9, 2),
@@ -323,9 +323,38 @@ INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
 ('2025-04-15 12:00:00', 27.5, 14.6, 29);
 
 
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 10:00:00', 25.9, 13.1, 3),
+('2025-04-15 10:15:00', 28.3, 13.7, 3),
+('2025-04-15 10:30:00', 27.3, 13.1, 3),
+('2025-04-15 10:45:00', 27.6, 14.7, 3),
+('2025-04-15 11:00:00', 24.1, 13.1, 3),
+('2025-04-15 11:15:00', 28.3, 13.3, 3),
+('2025-04-15 11:30:00', 25.1, 14.3, 3),
+('2025-04-15 11:45:00', 24.7, 14.0, 3),
+('2025-04-15 12:00:00', 25.4, 13.5, 3);
 
 SELECT * FROM empresa;
 SELECT * FROM usuario;
 SELECT * FROM silo;
 SELECT * FROM sensor;
+<<<<<<< HEAD
 SELECT * FROM dados;
+=======
+SELECT * FROM dados;
+
+select emp.nome as Empresa, sen.posicao, sil.setor from empresa as emp inner join silo as sil on sil.fkEmpresa = emp.id inner join sensor as sen on sen.fkSilo = sil.id;
+
+SELECT temperatura, umidade, data_dado FROM dados da
+INNER JOIN sensor se ON se.id = da.fkSensor
+WHERE fkSilo = 1;
+
+SELECT temperatura, umidade, 
+data_dado,
+TIME(data_dado) as momento_grafico
+FROM dados da
+INNER JOIN sensor se
+ON se.id = da.fkSensor
+WHERE fkSilo = 1
+ORDER BY momento_grafico DESC;
+>>>>>>> 63e5994ef5c22fafb22ff4cb1943034d0d1e8a26
