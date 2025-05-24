@@ -168,11 +168,15 @@ body {
     align-items: center;
     background-color: white;
     gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
 }
+
 
 .monitoramento h6 {
     margin: 10px 0;
     font-size: 40px;
+     text-align: center;
 }
 
 .monitoramento .alerta {
@@ -232,17 +236,33 @@ body {
     gap: 10px;
     border-top: #015579 solid;
     margin: 25px 0;
+    width: 100%;
 }
+.carousel-dashboard-container {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    justify-content: space-between;
+}
+
 
 .historico h6 {
     margin: 10px 0;
     font-size: 40px;
+    text-align: center;
 }
 
 .img_dados_teste {
     margin: 0;
     border: #015579 solid;
     height: 300px;
+}
+.monitoramento-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 
@@ -445,65 +465,9 @@ h6 {
 }
 
 /* Carrossel */
-
-
-
-  .carousel-inner {
-    display: flex;
-    transition: transform 0.5s ease;
-    height: 100%;
-  }
-
-  .carousel-item {
-    flex: 0 0 95%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 10px;
-    height: 96%;
-    overflow-y: auto;
-  }
-
-  .grid-silos {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .silo {
-    background-color: #e0e0e0;
-    padding: 20px;
-    text-align: center;
-    border-radius: 4px;
-    font-size: 17px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-
-  .silo:hover {
-    background-color: #d0d0d0;
-  }
-
-  .status-estavel {
-    color: green;
-  }
-
-  .status-instavel {
-    color: red;
-  }
-
-.main-container {
-    display: flex;
-    justify-content: space-between;  
-    width: 100%;
-    padding: 20px;
-}
-
 .carousel {
-    width: 35%; 
+    position: relative;
+    width: 35%;
     height: 500px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -511,15 +475,118 @@ h6 {
     overflow: hidden;
 }
 
-.conteudo-extra-container {
-    width: 65%; 
+.carousel-inner {
     display: flex;
-    justify-content: flex-start; 
-    align-items: flex-start;
+    transition: transform 0.5s ease;
+    height: 100%;
 }
 
+.carousel-item {
+    flex: 0 0 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    height: 96%;
+    overflow-y: auto;
+}
 
+.grid-silos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    width: 80%;
+    box-sizing: border-box;
+}
 
+.silo {
+    background-color: #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.silo:hover {
+    background-color: #d0d0d0;
+}
+
+.status-estavel {
+    color: green;
+}
+
+.status-instavel {
+    color: red;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(23, 108, 145, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.carousel-control:hover {
+    background-color: rgba(23, 108, 145, 1);
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.indicator.active {
+    background-color: rgba(23, 108, 145, 1);
+}
+
+.indicator:hover {
+    background-color: rgba(23, 108, 145, 0.8);
+}
+
+.conteudo-extra-container {
+    width: 65%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
 
 .conteudo-extra {
     width: 100%;
@@ -527,26 +594,14 @@ h6 {
     background-color: #ddd;
     border-radius: 8px;
     padding: 20px;
-     height: auto;
+    height: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     align-items: center;
-    overflow-y: auto; 
+    overflow-y: auto;
     position: relative;
-}
-.carousel-extra {
-    position: relative;
-    width: 100%;
- 
-    display: flex;
-    flex-direction: row; 
-    justify-content: space-between; 
-    align-items: flex-start;
-    gap: 20px; 
-    background-color: white;
-    padding: 20px; 
 }
 
 .conteudo-extra canvas {
@@ -556,14 +611,14 @@ h6 {
 
 .graficos-container {
     width: 100%;
-    padding-top: 50px; 
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
 .silo-nome {
-    position: absolute;  
+    position: absolute;
     top: 5px;
     left: 5px;
     font-weight: bold;
@@ -572,7 +627,7 @@ h6 {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 5px 10px;
     border-radius: 4px;
-    z-index: 10;      
+    z-index: 10;
 }
 
 .grafico-box h4 {
@@ -582,7 +637,7 @@ h6 {
 }
 
 .grafico-box {
-    flex: 1; 
+    flex: 1;
     background: white;
     padding: 15px;
     border-radius: 8px;
@@ -597,6 +652,8 @@ h6 {
 
 .linha-graficos {
     display: flex;
-    gap: 15px; 
+    gap: 15px;
     margin-bottom: 20px;
+    width: 100%;
 }
+
