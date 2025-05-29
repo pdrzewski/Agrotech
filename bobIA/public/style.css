@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --tamanho-header: 80px;
+    --tamanho-footer: 260px;
+    --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+}
+
+/*Header*/
+
+.header {
+    height: var(--tamanho-header);
+    background-color: #176C91;
+}
+
+.navbar {
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    width: 95%;
+    margin: auto;
+}
+
+.header img {
+    width: 80px;
+}
+
+.navbar {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    color: white;
+}
+
+.navbar .div_esquerda {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
+.navbar .div_direita {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+}
+
+.agora {
+    font-weight: 800;
+}
+
+/* BobIA */
+
+#bodyBobIA {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    width: 100%;
+}
+
+.tamanhoMaximo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caixaBob {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: black 8px 8px 8px 0px;
+    gap: 10px;
+    min-width: 18%;
+    max-width: 50%;
+    width: auto;
+    border-radius: 10px;
+    padding: 2%;
+    margin-top: 5%;
+}
+
+.bannerBob {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(./img/sojaBackground.jpg);
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    padding-top: 10px;
+}
+
+.bannerBob img {
+    width: 200px;
+    height: 100px;
+}

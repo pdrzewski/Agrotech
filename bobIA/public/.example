@@ -1,0 +1,4 @@
+// Copie e cole isso em um arquivo .env
+
+MINHA_CHAVE = 'Sua chave de acesso do google gemini'
+PORTA = 3334

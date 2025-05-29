@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BobIA</title>
-    <link rel="stylesheet" href="../../web-data-viz/public/style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
-<body>
 
-    <div id="container">
-        <h1>BobIA</h1>
-        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
-        <br><br>
-        <button onclick="gerarResposta()">Gerar Resposta</button>
-        <h3>Resposta da IA:</h3>
-        <div id="resposta"></div>
+<body id="bodyBobIA">
+
+    <div class="header">
+        <div class="navbar">
+            <img src="./img/Logo-Azul.png">
+            <div class="div_esquerda">
+            </div>
+            <div class="div_direita">
+                <li class="">
+                    <a href="../../../Agrotech/web-data-viz/public/index.html">Sair</a>
+                </li>
+                <li class="">
+                    <div id="div_usuario">Suporte N3</div>
+                </li>
+            </div>
+        </div>
+    </div>
+
+    <div class="bannerBob">
+        <div class="tamanhoMaximo">
+            <div class="caixaBob">
+                <h1>BobIA</h1>
+                <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+                <br><br>
+                <button onclick="gerarResposta()">Gerar Resposta</button>
+                <h3>Resposta da IA:</h3>
+                <div id="resposta"></div>
+            </div>
+        </div>
     </div>
 
     <script>
-        
+
         async function gerarResposta() {
             const pergunta = document.getElementById('pergunta').value;
 
@@ -37,6 +59,7 @@
         }
 
     </script>
-    
+
 </body>
+
 </html>
