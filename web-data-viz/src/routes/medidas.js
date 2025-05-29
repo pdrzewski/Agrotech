@@ -15,4 +15,8 @@ router.get("/tempo-real/:idSensor", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 })
 
+router.get("/condicao", function (req, res) {
+    medidaController.condicao(req, res);
+})
+
 module.exports = router;

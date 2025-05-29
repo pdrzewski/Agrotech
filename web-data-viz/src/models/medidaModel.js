@@ -38,8 +38,26 @@ function buscarMedidasEmTempoReal(idSensor) {
     return database.executar(instrucaoSql);
 }
 
+function condicao() {
+    var instrucaoSql = `SELECT da.data_dado momento_grafico,
+	                    temperatura,
+                        umidade,
+                        da.fkSensor
+                        FROM dados da
+                        INNER JOIN (SELECT fkSensor, 
+                                    MAX(data_dado) data_dado 
+                                    FROM dados 
+                                    GROUP BY fksensor) AS men
+                        ON men.fksensor = da.fksensor
+                        AND men.data_dado = da.data_dado;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
-    buscarSensoresDoSilo
+    buscarSensoresDoSilo,
+    condicao
 }

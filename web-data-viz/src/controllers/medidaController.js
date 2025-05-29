@@ -57,8 +57,25 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+function condicao(req, res) {
+
+    medidaModel.condicao()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum sensor encontrado para este silo!");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
-    buscarSensoresDoSilo
+    buscarSensoresDoSilo,
+    condicao
 }

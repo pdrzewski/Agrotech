@@ -202,17 +202,6 @@ INSERT INTO sensor (tipo, posicao, fkSilo) VALUES
 ('DHT11', 'inferior', 30);
 
 INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
-('2025-04-15 10:00:00', 25.9, 13.1, 1),
-('2025-04-15 10:15:00', 28.3, 13.7, 1),
-('2025-04-15 10:30:00', 27.3, 13.1, 1),
-('2025-04-15 10:45:00', 27.6, 14.7, 1),
-('2025-04-15 11:00:00', 24.1, 13.1, 1),
-('2025-04-15 11:15:00', 28.3, 13.3, 1),
-('2025-04-15 11:30:00', 25.1, 14.3, 1),
-('2025-04-15 11:45:00', 24.7, 14.0, 1),
-('2025-04-15 12:00:00', 25.4, 13.5, 1);
-
-INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
 ('2025-04-15 10:00:00', 26.2, 13.9, 2),
 ('2025-04-15 10:15:00', 28.5, 13.3, 2),
 ('2025-04-15 10:30:00', 27.4, 13.9, 2),
@@ -322,10 +311,58 @@ INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
 ('2025-04-15 11:45:00', 24.6, 14.0, 29),
 ('2025-04-15 12:00:00', 27.5, 14.6, 29);
 
-
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 3);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 6);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 9);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 12);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 15);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 18);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 21);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 24);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 27);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 30);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 33);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 36);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 39);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 42);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 45);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 48);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 51);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 54);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 57);
+INSERT INTO dados (data_dado, temperatura, umidade, fkSensor) VALUES
+('2025-04-15 12:00:00', 25.0, 13.0, 29 + 60);
 
 SELECT * FROM empresa;
 SELECT * FROM usuario;
 SELECT * FROM silo;
 SELECT * FROM sensor;
 SELECT * FROM dados;
+
+select da.data_dado momento_grafico,
+	   temperatura,
+       umidade,
+       da.fkSensor
+from dados da
+inner join (SELECT fkSensor, max(data_dado) data_dado FROM dados group by fksensor) as men
+  on men.fksensor = da.fksensor
+  and men.data_dado = da.data_dado;
