@@ -43,11 +43,19 @@
                     <div>
                         <h6>Monitoramento em tempo real</h6>
                     </div>
-
-                    <div class="alerta">
-                        <p>⚠️ Quantidade de silos instáveis: <span id="alerta"></span> ⚠️</p>
+                    <div class="kpis">
+                    <div class="alertaInstavel">
+                        <p>⚠️ Quantidade de silos instáveis: <span id="alertaInstavel"></span> ⚠️</p>
                     </div>
+                    <div class="alertaTotal">
+                        <p>⚠️ Quantidade total de silos: <span id="alertaTotal"></span> ⚠️</p>
+                    </div>
+                    <div class="alertaEstavel">
+                        <p>⚠️ Quantidade de silos estáveis: <span id="alertaEstavel"></span> ⚠️</p>
+                    </div>
+                </div>
                     <div class="alerta_temp_umid" id="alerta_temp_umid"></div>
+                    
                 </div>
 
                 <div class="carousel-dashboard-container">
@@ -340,7 +348,10 @@
                             document.getElementById(`idSilo${i + 1}`).innerHTML = 'Estável'
                         }
                     }
-                    alerta.innerHTML = qtdAlerta;
+                    alertaInstavel.innerHTML = qtdAlerta;
+                    alertaTotal.innerHTML = silos.length;
+                    alertaEstavel.innerHTML = silos.length - qtdAlerta;
+                    
                 })
                 .catch(function (error) {
                     console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
