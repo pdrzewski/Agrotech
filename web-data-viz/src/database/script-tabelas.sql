@@ -358,6 +358,10 @@ SELECT * FROM silo;
 SELECT * FROM sensor;
 SELECT * FROM dados;
 
+SELECT * FROM dados
+WHERE fkSensor = 26
+ORDER BY data_dado;
+
 select da.data_dado momento_grafico,
 	   temperatura,
        umidade,
@@ -366,3 +370,17 @@ from dados da
 inner join (SELECT fkSensor, max(data_dado) data_dado FROM dados group by fksensor) as men
   on men.fksensor = da.fksensor
   and men.data_dado = da.data_dado;
+  
+  SELECT data_dado AS data,
+                        temperatura,
+                        umidade
+                        FROM dados
+                        WHERE fkSensor = 2
+                        ORDER BY data_dado;
+
+ SELECT DATE_FORMAT(data_dado, '%d-%m-%y %H:%i:%s') AS data,
+                        temperatura,
+                        umidade
+                        FROM dados
+                        WHERE fkSensor = 2
+                        ORDER BY data_dado;

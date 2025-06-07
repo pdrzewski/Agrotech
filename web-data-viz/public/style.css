@@ -74,7 +74,8 @@ body {
     flex-direction: column;
     align-items: center;
     background-image: url(./img/sojaBackground.jpg);
-    height: 650px;
+    min-height: calc(var(--tamanho-banner) - 28px);
+    max-height: 100vh;
     background-size: cover;
     padding-top: 10px;
 }
@@ -92,7 +93,7 @@ body {
     background-color: #ffffff;
     box-shadow: black 8px 8px 8px 0px;
     gap: 10px;
-    width: 18%;
+    width: 15%;
     border-radius: 10px;
     padding: 2%;
     margin-bottom: 20px;
@@ -110,7 +111,7 @@ body {
 
 .caixa:hover {
     box-shadow: black 10px 10px 10px 0px;
-    padding: 3%;
+    padding: 2.5%;
     transition: 1s;
 }
 
@@ -133,7 +134,7 @@ body {
 }
 
 .botao:hover {
-    height: 45px;
+    height: 44px;
     width: 190px;
     transition: 0.5s;
     background-color: #015579;
@@ -275,7 +276,6 @@ body {
     justify-content: space-between;
 }
 
-
 .historico h6 {
     margin: 10px 0;
     font-size: 40px;
@@ -295,6 +295,9 @@ body {
     margin-bottom: 30px;
 }
 
+.historico #tabelaHistorico {
+    display: none;
+}
 
 /* SITE */
 
@@ -395,9 +398,12 @@ h6 {
 /* CALCULADORA */
 
 .calculadora {
+    max-height: fit-content;
+    min-height: calc(var(--tamanho-banner) - 88px);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background-color: rgb(8, 28, 59);
     color: white;
     gap: 10px;

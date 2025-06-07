@@ -19,4 +19,8 @@ router.get("/condicao", function (req, res) {
     medidaController.condicao(req, res);
 })
 
+router.get("/gerarHistorico/:idSensor", function (req, res) {
+    medidaController.gerarHistorico(req, res);
+})
+
 module.exports = router;

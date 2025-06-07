@@ -7,32 +7,29 @@
   <title>Cadastro AgroTech</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<div class="header">
-  <div class="navbar">
-    <img src="./img/Logo-Azul.png">
-    <div class="div_esquerda">
-      <li class="">
-        <a href="./index.html">Sobre nós</a>
-      </li>
-      <li class="">
-        <a href="./calculadora.html">Simulador</a>
-      </li>
-      <li class="">
-        <a href="#footer">Contatos</a>
-      </li>
-    </div>
-    <div class="div_direita">
-      <li class="">
-        <a href="./login.html">Login</a>
-      </li>
-      <li class="agora">
-        <a href="">Cadastro</a>
-      </li>
-    </div>
-  </div>
-</div>
 
 <body>
+  <div class="header">
+    <div class="navbar">
+      <img src="./img/Logo-Azul.png">
+      <div class="div_esquerda">
+        <li class="">
+          <a href="./index.html">Sobre nós</a>
+        </li>
+        <li class="">
+          <a href="./calculadora.html">Simulador</a>
+        </li>
+      </div>
+      <div class="div_direita">
+        <li class="">
+          <a href="./login.html">Login</a>
+        </li>
+        <li class="agora">
+          <a href="">Cadastro</a>
+        </li>
+      </div>
+    </div>
+  </div>
   <div class="banner">
     <img src="./img/agrotech1-removebg-preview.png" alt="">
     <div class="caixa">
@@ -49,44 +46,45 @@
       </div>
       <button class="botao" onclick="cadastrar()">Cadastrar</button>
     </div>
-    <div class="footer" id="footer">
-      <div>
-        <img src="./img/Agrotech-Fundo-Azul.png" alt="logo/agrotech" id="agrotech_logo">
-        <p class="texto_footer">Empresa número 1 em tecnologia no <br> setor agropecuário</p>
-        <div class="div_icons">
-          <img src="img/icons8-facebook-circled-50.png" alt="icon/facebook" id="facebook">
-          <img src="img/icons8-twitter-bird-30.png" alt="icon/twitter" id="twitter">
-          <img src="img/icons8-instagram-26.png" alt="icon/instagram" id="instagram">
-          <img src="img/icons8-linkedin-30.png" alt="icon/linkedin" id="linkedin">
-          <img src="img/icons8-youtube-50.png" alt="icon/youtube" id="youtube">
-        </div>
-      </div>
-      <div class="lado_direito">
-        <div>
-          <h2>Fundadores</h2>
-          <p>Giovanna Tracinkas</p>
-          <p>Guilherme Aoki</p>
-          <p>Guilherme Barros</p>
-          <p>João Oliveira</p>
-          <p>Pedro Tomaszewski</p>
-          <p>Kauã Medeiros</p>
-        </div>
-      </div>
-      <div class="texto_footer">
-        <h2>Mais informações</h2>
-        <a href="index.html">Home</a> <br>
-        <a href="login.html">Login</a> <br>
-        <a href="calculadora.html">Simulação</a>
-      </div>
-      <div class="texto_footer">
-        <h2>Contate-nos</h2>
-        <p>vendas@agrotech.com</p>
-        <p>(11) 98838-0889</p>
-        <p>Rua Haddock Lobo, 595. -</p>
-        <p>Cerqueira César, São Paulo - SP</p>
-        <p>01414-001</p>
+  </div>
+  <div class="footer" id="footer">
+    <div>
+      <img src="./img/Agrotech-Fundo-Azul.png" alt="logo/agrotech" id="agrotech_logo">
+      <p class="texto_footer">Empresa número 1 em tecnologia no <br> setor agropecuário</p>
+      <div class="div_icons">
+        <img src="img/icons8-facebook-circled-50.png" alt="icon/facebook" id="facebook">
+        <img src="img/icons8-twitter-bird-30.png" alt="icon/twitter" id="twitter">
+        <img src="img/icons8-instagram-26.png" alt="icon/instagram" id="instagram">
+        <img src="img/icons8-linkedin-30.png" alt="icon/linkedin" id="linkedin">
+        <img src="img/icons8-youtube-50.png" alt="icon/youtube" id="youtube">
       </div>
     </div>
+    <div class="lado_direito">
+      <div>
+        <h2>Fundadores</h2>
+        <p>Giovanna Tracinkas</p>
+        <p>Guilherme Aoki</p>
+        <p>Guilherme Barros</p>
+        <p>João Oliveira</p>
+        <p>Pedro Tomaszewski</p>
+        <p>Kauã Medeiros</p>
+      </div>
+    </div>
+    <div class="texto_footer">
+      <h2>Mais informações</h2>
+      <a href="index.html">Home</a> <br>
+      <a href="login.html">Login</a> <br>
+      <a href="calculadora.html">Simulação</a>
+    </div>
+    <div class="texto_footer">
+      <h2>Contate-nos</h2>
+      <p>vendas@agrotech.com</p>
+      <p>(11) 98838-0889</p>
+      <p>Rua Haddock Lobo, 595. -</p>
+      <p>Cerqueira César, São Paulo - SP</p>
+      <p>01414-001</p>
+    </div>
+  </div>
 </body>
 
 <script>
@@ -99,7 +97,7 @@
       if (usuario.includes('@') && usuario.includes('.com')) {
         if (senha.length > 9) {
           if (usuario != '' && usuario.length > 4) {
-            alert(`Cadastro concluido com sucesso, ${usuario}.`);
+            alert(`Cadastro concluído com sucesso, ${usuario}.`);
             window.location = "./login.html";
           } else {
             alert(`O nome de usuário deve conter mais de 4 caracteres e não pode estar vazio.`);

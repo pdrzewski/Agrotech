@@ -44,18 +44,18 @@
                         <h6>Monitoramento em tempo real</h6>
                     </div>
                     <div class="kpis">
-                    <div class="alertaInstavel">
-                        <p>⚠️ Quantidade de silos instáveis: <span id="alertaInstavel"></span> ⚠️</p>
+                        <div class="alertaInstavel">
+                            <p>⚠️ Quantidade de silos instáveis: <span id="alertaInstavel"></span> ⚠️</p>
+                        </div>
+                        <div class="alertaTotal">
+                            <p>⚠️ Quantidade total de silos: <span id="alertaTotal"></span> ⚠️</p>
+                        </div>
+                        <div class="alertaEstavel">
+                            <p>⚠️ Quantidade de silos estáveis: <span id="alertaEstavel"></span> ⚠️</p>
+                        </div>
                     </div>
-                    <div class="alertaTotal">
-                        <p>⚠️ Quantidade total de silos: <span id="alertaTotal"></span> ⚠️</p>
-                    </div>
-                    <div class="alertaEstavel">
-                        <p>⚠️ Quantidade de silos estáveis: <span id="alertaEstavel"></span> ⚠️</p>
-                    </div>
-                </div>
                     <div class="alerta_temp_umid" id="alerta_temp_umid"></div>
-                    
+
                 </div>
 
                 <div class="carousel-dashboard-container">
@@ -143,8 +143,6 @@
                         <button class="carousel-control prev" onclick="prevSlide()">‹</button>
                         <button class="carousel-control next" onclick="nextSlide()">›</button>
                     </div>
-
-                    <!-- div do conteúdo extra (Dashboards) -->
                     <div id="conteudo-container" class="conteudo-extra-container"></div>
                 </div>
             </div>
@@ -153,9 +151,15 @@
                 <div>
                     <h6>Histórico dos dados</h6>
                 </div>
-                <!-- <div id="div_historico">
-                    <img class="img_dados_teste" src="./img/Historico_Silo1.png" alt="">
-                </div> -->
+                <button onclick="gerar()">Gerar Histórico do Silo</button>
+                <div id="tabelaHistorico">
+                    <p>Silo <span id="tabelaSilo"></span></p>
+                    <div class="tabelas">
+                        <div id="tabela_historico1"></div>
+                        <div id="tabela_historico2"></div>
+                        <div id="tabela_historico3"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -351,7 +355,7 @@
                     alertaInstavel.innerHTML = qtdAlerta;
                     alertaTotal.innerHTML = silos.length;
                     alertaEstavel.innerHTML = silos.length - qtdAlerta;
-                    
+
                 })
                 .catch(function (error) {
                     console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
@@ -361,6 +365,7 @@
         function criarGraficos(nomeDoSilo) {
             var idSilo = nomeDoSilo.split(' ')[1].trim();
             console.log('Número do silo: ', idSilo);
+            var ID_SILO_ATUAL = sessionStorage.setItem('idSiloAtual', idSilo);
 
             if (Number(idSilo) > 10) {
                 idSilo = 4;
@@ -418,7 +423,7 @@
         function plotarGrafico(resposta, idSensor, graficoIndex) {
 
             console.log('iniciando plotagem do gráfico...');
-
+            var ID_SENSOR_ATUAL = sessionStorage.setItem('idSensorAtual', idSensor)
             // Criando estrutura para plotar gráfico - labels
             let labels = [];
 
@@ -629,12 +634,12 @@
                     }
 
                     var condicao_alerta = '';
-                    if ((temperatura > 30 || temperatura < 20) || (umidade > 14 || umidade < 12)){
+                    if ((temperatura > 30 || temperatura < 20) || (umidade > 14 || umidade < 12)) {
                         condicao_alerta = 'Dados fora do esperado!'
-                    } 
-                    
+                    }
+
                     document.getElementById('alerta_temp_umid').innerHTML = condicao_alerta
-                    
+
                     // Atualiza os dados dos gráficos
                     if (dados.labels.length >= 10) {
                         dados.labels.shift();
@@ -688,6 +693,99 @@
         // Chama a função para inicializar os indicadores quando o DOM estiver carregado
         document.addEventListener('DOMContentLoaded', initIndicators);
 
+        function gerar() {
+            tabelaHistorico.style.display = 'flex';
+            var idSensor = sessionStorage.getItem('idSensorAtual');
+            var idSilo = sessionStorage.getItem('idSiloAtual');
+            var numeroSilo = document.getElementById('tabelaSilo');
+
+            numeroSilo.innerHTML = `${idSilo}`;
+
+            fetch(`/medidas/gerarHistorico/${idSensor}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(function (resultado) {
+                return resultado.json();
+            })
+                .then(function (tabela) {
+                    console.log(tabela)
+                    gerarTabela(tabela, idSensor)
+                })
+                .catch(function (error) {
+                    console.log('Ocorreu um erro:', error);
+                });
+        }
+
+        function gerarTabela(tabela, idSensor) {
+            var data = 0;
+            var tabelaDados1 = '';
+            var tabelaDados2 = '';
+            var tabelaDados3 = '';
+
+            const fator = (idSensor % 10) * 0.01 + 0.02;
+
+            for (var i = 0; i < tabela.length; i++) {
+                tabelaDados1 += `<tr>
+                                <td>${tabela[i].data}</td>
+                                <td>${(tabela[i].temperatura * (1 + fator)).toFixed(2)}</td>
+                                <td>${(tabela[i].umidade * (1 - fator)).toFixed(2)}</td>
+                            </tr>`;
+                tabelaDados2 += `<tr>
+                                <td>${tabela[i].data}</td>
+                                <td>${tabela[i].temperatura}</td>
+                                <td>${tabela[i].umidade}</td>
+                            </tr>`;
+                tabelaDados3 += `<tr>
+                                <td>${tabela[i].data}</td>
+                                <td>${(tabela[i].temperatura * (1 - fator)).toFixed(2)}</td>
+                                <td>${(tabela[i].umidade * (1 + fator)).toFixed(2)}</td>
+                            </tr>`;
+            }
+            var tabela1 = document.getElementById('tabela_historico1');
+            var tabela2 = document.getElementById('tabela_historico2');
+            var tabela3 = document.getElementById('tabela_historico3');
+
+            tabela1.innerHTML = `<table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Temperatura</th>
+                                <th>Umidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${tabelaDados1}
+                        </tbody>
+                    </table>`;
+
+            tabela2.innerHTML = `<table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Temperatura</th>
+                                <th>Umidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${tabelaDados2}
+                        </tbody>
+                    </table>`;
+
+            tabela3.innerHTML = `<table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Temperatura</th>
+                                <th>Umidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${tabelaDados3}
+                        </tbody>
+                    </table>`;
+        }
     </script>
 
 </html>

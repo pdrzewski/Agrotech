@@ -55,9 +55,22 @@ function condicao() {
     return database.executar(instrucaoSql);
 }
 
+function gerarHistorico(idSensor) {
+    var instrucaoSql = `SELECT DATE_FORMAT(data_dado, '%d-%m-%y %H:%i:%s') AS data,
+                        temperatura,
+                        umidade
+                        FROM dados
+                        WHERE fkSensor = ${idSensor}
+                        ORDER BY data_dado;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarSensoresDoSilo,
-    condicao
+    condicao,
+    gerarHistorico
 }
