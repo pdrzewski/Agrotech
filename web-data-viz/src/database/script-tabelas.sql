@@ -382,5 +382,5 @@ inner join (SELECT fkSensor, max(data_dado) data_dado FROM dados group by fksens
                         temperatura,
                         umidade
                         FROM dados
-                        WHERE fkSensor = 2
+                        WHERE fkSensor = 2 AND data_dado LIKE '%:00'
                         ORDER BY data_dado;
