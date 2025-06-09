@@ -295,9 +295,100 @@ body {
     margin-bottom: 30px;
 }
 
+.historico button {
+    background-color: rgb(98, 135, 255);
+    font-weight: 700;
+    font-size: 25px;
+    padding: 5px;
+    border: black solid 2px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.historico button:hover {
+    background-color: rgb(70, 70, 228);
+    color: white;
+    transition: 0.5s;
+}
+
 .historico #tabelaHistorico {
     display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
 }
+
+.historico #tabelaHistorico h1 {
+    background-color: rgb(0, 0, 247);
+    color: white;
+    font-weight: 700;
+    padding: 5px 10px;
+    border: black solid 2px;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.historico #tabelaHistorico p {
+    background-color: rgb(50, 50, 131);
+    color: white;
+    font-weight: 700;
+    padding: 5px 10px;
+    border: black solid 2px;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.historico .tabelas {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 90%;
+}
+
+.historico .tabelas p {
+    background-color: rgb(0, 0, 153);
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 5px 10px;
+    border: black solid 2px;
+    border-radius: 5px;
+    text-align: center;
+    width: fit-content;
+}
+
+.historico .corAlerta {
+    background-color: rgb(255, 255, 70);
+}
+
+.historico .alinhadorTabela {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.historico table {
+    border-radius: 20px;
+    letter-spacing: 1px;
+}
+
+.historico table td {
+    font-size: 15px;
+}
+
+.historico table thead {
+    background-color: #4ec7f7;
+    font-size: 16px;
+}
+
+.historico table th, td {
+    border: 2px solid black;
+    padding: 8px 10px;
+    border-radius: 7px;
+}
+
 
 /* SITE */
 
@@ -638,6 +729,45 @@ h6 {
     align-items: center;
     overflow-y: auto;
     position: relative;
+}
+
+.conteudo-extra .sensores {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.conteudo-extra .sensores p {
+    margin: 0;
+}
+
+.conteudo-extra .caixaSensor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+.conteudo-extra .caixaMaximo {
+    height: 15px;
+    width: 30px;
+    background-color: #f12c2c;
+    border: none;
+}
+
+.conteudo-extra .caixaAtual {
+    height: 15px;
+    width: 30px;
+    background-color: #3cff66;
+    border: none;
+}
+
+.conteudo-extra .caixaMinimo {
+    height: 15px;
+    width: 30px;
+    background-color: #1c55f1;
+    border: none;
 }
 
 .conteudo-extra canvas {

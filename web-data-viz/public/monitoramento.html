@@ -54,7 +54,6 @@
                             <p>⚠️ Quantidade de silos estáveis: <span id="alertaEstavel"></span> ⚠️</p>
                         </div>
                     </div>
-                    <div class="alerta_temp_umid" id="alerta_temp_umid"></div>
 
                 </div>
 
@@ -153,11 +152,12 @@
                 </div>
                 <button onclick="gerar()">Gerar Histórico do Silo</button>
                 <div id="tabelaHistorico">
-                    <p>Silo <span id="tabelaSilo"></span></p>
+                    <h1>Silo <span id="tabelaSilo"></span></h1>
+                    <p id="dataHistorico"></p>
                     <div class="tabelas">
-                        <div id="tabela_historico1"></div>
-                        <div id="tabela_historico2"></div>
-                        <div id="tabela_historico3"></div>
+                        <div id="tabela_historico1" class="alinhadorTabela"></div>
+                        <div id="tabela_historico2" class="alinhadorTabela"></div>
+                        <div id="tabela_historico3" class="alinhadorTabela"></div>
                     </div>
                 </div>
             </div>
@@ -253,7 +253,7 @@
         carousel.addEventListener('mouseleave', startCarousel);
 
         function alterarVisibilidade(event) {
-            document.getElementById('alerta_temp_umid').innerHTML = '';
+            tabelaHistorico.style.display = 'none';
             const silo = event.currentTarget;
             const nome = silo.textContent.split(':')[0].trim();
 
@@ -265,6 +265,17 @@
                 conteudoContainer.innerHTML = `
                 <div class="conteudo-extra">
                     <div class="silo-nome">${nome}</div>
+                    <div class="sensores">
+                        <div class="caixaSensor">
+                            <div class="caixaMaximo"></div><p>Máximo</p>
+                        </div>
+                        <div class="caixaSensor">
+                            <div class="caixaAtual"></div><p>Atual</p>
+                        </div>
+                        <div class="caixaSensor">
+                            <div class="caixaMinimo"></div><p>Mínimo</p>
+                        </div>
+                    </div>
                     
                     <!-- Linha Superior: 3 Gráficos de Temperatura -->
                     <div class="linha-graficos">
@@ -552,15 +563,15 @@
                     },
                     plugins: {
                         legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: {
-                                boxWidth: 15,
-                                padding: 10,
-                                filter: function (legendItem, data) {
-                                    return legendItem.text === 'Temperatura atual';
-                                }
-                            }
+                            display: false,
+                            // position: 'bottom',
+                            // labels: {
+                            //     boxWidth: 15,
+                            //     padding: 10,
+                            //     filter: function (legendItem, data) {
+                            //         return legendItem.text === 'Temperatura atual';
+                            //     }
+                            // }
                         }
                     }
                 }
@@ -582,15 +593,15 @@
                     },
                     plugins: {
                         legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: {
-                                boxWidth: 15,
-                                padding: 10,
-                                filter: function (legendItem, data) {
-                                    return legendItem.text === 'Umidade atual';
-                                }
-                            }
+                            display: false,
+                            // position: 'bottom',
+                            // labels: {
+                            //     boxWidth: 15,
+                            //     padding: 10,
+                            //     filter: function (legendItem, data) {
+                            //         return legendItem.text === 'Umidade atual';
+                            //     }
+                            // }
                         }
                     }
                 }
@@ -632,14 +643,6 @@
                             umidade *= (1 + fator);
                         }
                     }
-
-                    var condicao_alerta = '';
-                    if ((temperatura > 30 || temperatura < 20) || (umidade > 14 || umidade < 12)) {
-                        condicao_alerta = 'Dados fora do esperado!'
-                    }
-
-                    document.getElementById('alerta_temp_umid').innerHTML = condicao_alerta
-
                     // Atualiza os dados dos gráficos
                     if (dados.labels.length >= 10) {
                         dados.labels.shift();
@@ -698,6 +701,7 @@
             var idSensor = sessionStorage.getItem('idSensorAtual');
             var idSilo = sessionStorage.getItem('idSiloAtual');
             var numeroSilo = document.getElementById('tabelaSilo');
+            var dataHistorico = document.getElementById('dataHistorico');
 
             numeroSilo.innerHTML = `${idSilo}`;
 
@@ -727,32 +731,49 @@
             const fator = (idSensor % 10) * 0.01 + 0.02;
 
             for (var i = 0; i < tabela.length; i++) {
+                var cor = '';
+                if (tabela[i].temperatura * (1 + fator) < 20 || tabela[i].temperatura * (1 + fator) > 30 ||
+                    tabela[i].umidade * (1 - fator) < 12 || tabela[i].umidade * (1 - fator) > 14) {
+                    cor = 'corAlerta';
+                }
                 tabelaDados1 += `<tr>
-                                <td>${tabela[i].data}</td>
-                                <td>${(tabela[i].temperatura * (1 + fator)).toFixed(2)}</td>
-                                <td>${(tabela[i].umidade * (1 - fator)).toFixed(2)}</td>
+                                <td class="${cor}">${tabela[i].data}</td>
+                                <td class="${cor}">${(tabela[i].temperatura * (1 + fator)).toFixed(2)}</td>
+                                <td class="${cor}">${(tabela[i].umidade * (1 - fator)).toFixed(2)}</td>
                             </tr>`;
+                cor = '';
+                if (tabela[i].temperatura < 20 || tabela[i].temperatura > 30 ||
+                    tabela[i].umidade < 12 || tabela[i].umidade > 14) {
+                    cor = 'corAlerta';
+                }
                 tabelaDados2 += `<tr>
-                                <td>${tabela[i].data}</td>
-                                <td>${tabela[i].temperatura}</td>
-                                <td>${tabela[i].umidade}</td>
+                                <td class="${cor}">${tabela[i].data}</td>
+                                <td class="${cor}">${tabela[i].temperatura}</td>
+                                <td class="${cor}">${tabela[i].umidade}</td>
                             </tr>`;
+                cor = '';
+                if (tabela[i].temperatura * (1 - fator) < 20 || tabela[i].temperatura * (1 - fator) > 30 ||
+                    tabela[i].umidade * (1 + fator) < 12 || tabela[i].umidade * (1 + fator) > 14) {
+                    cor = 'corAlerta';
+                }
                 tabelaDados3 += `<tr>
-                                <td>${tabela[i].data}</td>
-                                <td>${(tabela[i].temperatura * (1 - fator)).toFixed(2)}</td>
-                                <td>${(tabela[i].umidade * (1 + fator)).toFixed(2)}</td>
+                                <td class="${cor}">${tabela[i].data}</td>
+                                <td class="${cor}">${(tabela[i].temperatura * (1 - fator)).toFixed(2)}</td>
+                                <td class="${cor}">${(tabela[i].umidade * (1 + fator)).toFixed(2)}</td>
                             </tr>`;
             }
+            dataHistorico.innerHTML = `Até a data de hoje: ${tabela[0].data.split(' ')[0]}`;
             var tabela1 = document.getElementById('tabela_historico1');
             var tabela2 = document.getElementById('tabela_historico2');
             var tabela3 = document.getElementById('tabela_historico3');
 
-            tabela1.innerHTML = `<table>
+            tabela1.innerHTML = `<p>Sensor Superior</p>
+                    <table>
                         <thead>
                             <tr>
                                 <th>Data</th>
-                                <th>Temperatura</th>
-                                <th>Umidade</th>
+                                <th>Temperatura (°C)</th>
+                                <th>Umidade (%)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -760,12 +781,13 @@
                         </tbody>
                     </table>`;
 
-            tabela2.innerHTML = `<table>
+            tabela2.innerHTML = `<p>Sensor Meio</p>
+                    <table>
                         <thead>
                             <tr>
                                 <th>Data</th>
-                                <th>Temperatura</th>
-                                <th>Umidade</th>
+                                <th>Temperatura (°C)</th>
+                                <th>Umidade (%)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -773,12 +795,13 @@
                         </tbody>
                     </table>`;
 
-            tabela3.innerHTML = `<table>
+            tabela3.innerHTML = `<p>Sensor Base</p>
+                    <table>
                         <thead>
                             <tr>
                                 <th>Data</th>
-                                <th>Temperatura</th>
-                                <th>Umidade</th>
+                                <th>Temperatura (°C)</th>
+                                <th>Umidade (%)</th>
                             </tr>
                         </thead>
                         <tbody>

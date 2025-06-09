@@ -61,7 +61,7 @@ function gerarHistorico(idSensor) {
                         umidade
                         FROM dados
                         WHERE fkSensor = ${idSensor}
-                        ORDER BY data_dado;`;
+                        ORDER BY data_dado DESC;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
