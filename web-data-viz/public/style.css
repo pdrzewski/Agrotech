@@ -420,8 +420,11 @@ h6 {
 .box1 {
     display: flex;
     justify-content: flex-start;
-    gap: 100px;
     margin-top: 50px;
+    gap: 150px;
+    border: 4px solid #176C91;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .box1 .texto {
@@ -430,18 +433,22 @@ h6 {
 }
 
 .box1 img {
-    border: #176C91 solid 4px;
-    width: 700px;
+    border: #176C91 solid 3px;
+    width: 620px;
     align-self: center;
-    height: fit-content;
+    height: 400px;
+    border-radius: 10px;
 }
 
 .box2 {
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-start;
-    gap: 100px;
+    gap: 150px;
     margin-top: 50px;
+    border: 4px solid #176C91;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .box2 .texto {
@@ -450,17 +457,21 @@ h6 {
 }
 
 .box2 img {
-    border: #176C91 solid 4px;
-    width: 770px;
+    border: #176C91 solid 3px;
     align-self: center;
-    height: fit-content;
+    width: 620px;
+    height: 400px;
+    border-radius: 10px;
 }
 
 .box3 {
     display: flex;
     justify-content: flex-start;
-    gap: 100px;
     margin-top: 50px;
+    gap: 150px;
+    border: 4px solid #176C91;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .box3 .texto {
@@ -469,10 +480,11 @@ h6 {
 }
 
 .box3 img {
-    border: #176C91 solid 4px;
-    width: 600px;
+    border: #176C91 solid 3px;
     align-self: center;
-    height: 450px;
+    width: 620px;
+    height: 400px;
+    border-radius: 10px;
 }
 
 .ModeloDeNegócio {
