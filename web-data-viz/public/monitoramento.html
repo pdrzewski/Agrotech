@@ -20,7 +20,8 @@
                 <li class="">
                     <a href="#historico">Histórico</a>
                 </li>
-                <a href="https://agrotechsptech-768654.atlassian.net/servicedesk/customer/user/login?destination=portals">Suporte</a>
+                <a
+                    href="https://agrotechsptech-768654.atlassian.net/servicedesk/customer/user/login?destination=portals">Suporte</a>
             </div>
             <div>
                 <img class="img_fundo_azul" src="./img/Agrotech-Fundo-Azul.png">
@@ -255,6 +256,7 @@
 
         function alterarVisibilidade(event) {
             tabelaHistorico.style.display = 'none';
+            console.log(event.currentTarget)
             const silo = event.currentTarget;
             const nome = silo.textContent.split(':')[0].trim();
 
@@ -265,50 +267,55 @@
                 conteudoContainer.dataset.current = nome;
                 conteudoContainer.innerHTML = `
                 <div class="conteudo-extra">
-                    <div class="silo-nome">${nome}</div>
-                    <div class="sensores">
-                        <div class="caixaSensor">
-                            <div class="caixaMaximo"></div><p>Máximo</p>
-                        </div>
-                        <div class="caixaSensor">
-                            <div class="caixaAtual"></div><p>Atual</p>
-                        </div>
-                        <div class="caixaSensor">
-                            <div class="caixaMinimo"></div><p>Mínimo</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Linha Superior: 3 Gráficos de Temperatura -->
-                    <div class="linha-graficos">
-                        <div class="grafico-box">
-                            <h4>Temperatura - Sensor 1 (topo)</h4>
-                            <canvas id="grafico_temperatura_1"></canvas>
-                        </div>
-                        <div class="grafico-box">
-                            <h4>Temperatura - Sensor 2 (meio)</h4>
-                            <canvas id="grafico_temperatura_2"></canvas>
-                        </div>
-                        <div class="grafico-box">
-                            <h4>Temperatura - Sensor 3 (base)</h4>
-                            <canvas id="grafico_temperatura_3"></canvas>
-                        </div>
-                    </div>
-
-                    <!-- Linha Inferior: 3 Gráficos de Umidade -->
-                    <div class="linha-graficos">
-                        <div class="grafico-box">
-                            <h4>Umidade - Sensor 1 (topo)</h4>
-                            <canvas id="grafico_umidade_1"></canvas>
-                        </div>
-                        <div class="grafico-box">
-                            <h4>Umidade - Sensor 2 (meio)</h4>
-                            <canvas id="grafico_umidade_2"></canvas>
-                        </div>
-                        <div class="grafico-box">
-                            <h4>Umidade - Sensor 3 (base)</h4>
-                            <canvas id="grafico_umidade_3"></canvas>
-                        </div>
-                    </div>
+                <div class="silo-nome">${nome}</div>
+                <div class="sensores">
+                <div class="caixaSensor">
+                <div class="caixaMaximo"></div><p>Máximo</p>
+                </div>
+                <div class="caixaSensor">
+                <div class="caixaAtual"></div><p>Atual</p>
+                </div>
+                <div class="caixaSensor">
+                <div class="caixaMinimo"></div><p>Mínimo</p>
+                </div>
+                </div>
+                <!-- Linha Superior: 3 Gráficos de Temperatura -->
+                <h2 class="titulo-secao">Temperatura</h2>
+                
+                <div class="linha-graficos">
+                <div class="grafico-box">
+                <h4>Sensor 1 (topo)</h4>
+                <canvas id="grafico_temperatura_1"></canvas>
+                </div>
+                <div class="grafico-box">
+                <h4>Sensor 2 (meio)</h4>
+                <canvas id="grafico_temperatura_2"></canvas>
+                </div>
+                <div class="grafico-box">
+                <h4>Sensor 3 (base)</h4>
+                <canvas id="grafico_temperatura_3"></canvas>
+                </div>
+                </div>
+                
+                <hr class="divisoria" />
+                
+                <!-- Linha Inferior: 3 Gráficos de Umidade -->
+                <h2 class="titulo-secao">Umidade</h2>
+                
+                <div class="linha-graficos">
+                <div class="grafico-box">
+                <h4>Sensor 1 (topo)</h4>
+                <canvas id="grafico_umidade_1"></canvas>
+                </div>
+                <div class="grafico-box">
+                <h4>Sensor 2 (meio)</h4>
+                <canvas id="grafico_umidade_2"></canvas>
+                </div>
+                <div class="grafico-box">
+                <h4>Sensor 3 (base)</h4>
+                <canvas id="grafico_umidade_3"></canvas>
+                </div>
+                </div>
                 </div>
                 `;
 
