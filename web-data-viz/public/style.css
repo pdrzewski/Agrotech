@@ -196,7 +196,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #176C91;
+  background-color: #228f9d;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
@@ -577,10 +577,34 @@ h6 {
 
 .div_icons {
     display: flex;
-    height: 30px;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
-    flex-direction: row;
+    margin-top: 20px;
 }
+
+.jira-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.jira-logo {
+    width: 60px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+
+.jira-texto {
+    margin-top: 8px;
+    font-size: 14px;
+    color: white; /* ou a cor que combina com seu fundo */
+    text-align: center;
+}
+
+
 
 .div_icons img {
     height: 30px;
